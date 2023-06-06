@@ -3,195 +3,201 @@
  *
  * This file is part of The Synthstrom Audible Deluge Firmware.
  *
- * The Synthstrom Audible Deluge Firmware is free software: you can redistribute it and/or modify it under the
- * terms of the GNU General Public License as published by the Free Software Foundation,
- * either version 3 of the License, or (at your option) any later version.
+ * The Synthstrom Audible Deluge Firmware is free software: you can redistribute
+ * it and/or modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
  *
- * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <https://www.gnu.org/licenses/>.
-*/
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <https://www.gnu.org/licenses/>.
+ */
 
 #include <MenuItemRange.h>
 
-
-#include "soundeditor.h"
-#include "numericdriver.h"
-#include "functions.h"
-#include "IndicatorLEDs.h"
-#include "matrixdriver.h"
 #include "Buttons.h"
+#include "IndicatorLEDs.h"
+#include "functions.h"
+#include "matrixdriver.h"
+#include "numericdriver.h"
 #include "oled.h"
-
+#include "soundeditor.h"
 
 void MenuItemRange::beginSession(MenuItem* navigatedBackwardFrom) {
 
-	soundEditor.editingRangeEdge = RANGE_EDIT_OFF;
+  soundEditor.editingRangeEdge = RANGE_EDIT_OFF;
 
 #if !HAVE_OLED
-	drawValue(0, false);
+  drawValue(0, false);
 #endif
 }
 
-
 void MenuItemRange::horizontalEncoderAction(int offset) {
 
-	if (Buttons::isShiftButtonPressed()) return;
+  if (Buttons::isShiftButtonPressed()) return;
 
-	// Turn left
-	if (offset < 0) {
+  // Turn left
+  if (offset < 0) {
 
-		if (soundEditor.editingRangeEdge == RANGE_EDIT_LEFT) {
-switchOff:
-			soundEditor.editingRangeEdge = RANGE_EDIT_OFF;
+    if (soundEditor.editingRangeEdge == RANGE_EDIT_LEFT) {
+    switchOff:
+      soundEditor.editingRangeEdge = RANGE_EDIT_OFF;
 #if HAVE_OLED
-			goto justDrawValueForEditingRange;
+      goto justDrawValueForEditingRange;
 #else
-			int startPos = (soundEditor.editingRangeEdge == RANGE_EDIT_RIGHT) ? 999 : 0;
-			drawValue(startPos);
+      int startPos = (soundEditor.editingRangeEdge == RANGE_EDIT_RIGHT) ? 999 : 0;
+      drawValue(startPos);
 #endif
-		}
+    }
 
-		else {
+    else {
 
-			if (mayEditRangeEdge(RANGE_EDIT_LEFT)) {
-				soundEditor.editingRangeEdge = RANGE_EDIT_LEFT;
-justDrawValueForEditingRange:
+      if (mayEditRangeEdge(RANGE_EDIT_LEFT)) {
+        soundEditor.editingRangeEdge = RANGE_EDIT_LEFT;
+      justDrawValueForEditingRange:
 #if HAVE_OLED
-				renderUIsForOled();
+        renderUIsForOled();
 #else
-				drawValueForEditingRange(true);
+        drawValueForEditingRange(true);
 #endif
-			}
-			else {
-				if (soundEditor.editingRangeEdge == RANGE_EDIT_RIGHT) {
-					goto switchOff;
-				}
-			}
-		}
-	}
+      } else {
+        if (soundEditor.editingRangeEdge == RANGE_EDIT_RIGHT) { goto switchOff; }
+      }
+    }
+  }
 
-	// Turn right
-	else {
-		if (soundEditor.editingRangeEdge == RANGE_EDIT_RIGHT) {
-			goto switchOff;
-		}
+  // Turn right
+  else {
+    if (soundEditor.editingRangeEdge == RANGE_EDIT_RIGHT) {
+      goto switchOff;
+    }
 
-		else {
+    else {
 
-			if (mayEditRangeEdge(RANGE_EDIT_RIGHT)) {
-				soundEditor.editingRangeEdge = RANGE_EDIT_RIGHT;
-				goto justDrawValueForEditingRange;
-			}
-			else {
-				if (soundEditor.editingRangeEdge == RANGE_EDIT_LEFT) {
-					goto switchOff;
-				}
-			}
-		}
-	}
+      if (mayEditRangeEdge(RANGE_EDIT_RIGHT)) {
+        soundEditor.editingRangeEdge = RANGE_EDIT_RIGHT;
+        goto justDrawValueForEditingRange;
+      } else {
+        if (soundEditor.editingRangeEdge == RANGE_EDIT_LEFT) { goto switchOff; }
+      }
+    }
+  }
 }
 
 // Returns whether there was anything to cancel
 bool MenuItemRange::cancelEditingIfItsOn() {
-	if (!soundEditor.editingRangeEdge) return false;
+  if (!soundEditor.editingRangeEdge) return false;
 
-	int startPos = (soundEditor.editingRangeEdge == RANGE_EDIT_RIGHT) ? 999 : 0;
-	soundEditor.editingRangeEdge = RANGE_EDIT_OFF;
-	drawValue(startPos);
-	return true;
+  int startPos                 = (soundEditor.editingRangeEdge == RANGE_EDIT_RIGHT) ? 999 : 0;
+  soundEditor.editingRangeEdge = RANGE_EDIT_OFF;
+  drawValue(startPos);
+  return true;
 }
-
-
 
 void MenuItemRange::drawValue(int startPos, bool renderSidebarToo) {
 #if HAVE_OLED
-	renderUIsForOled();
+  renderUIsForOled();
 #else
-	char* buffer = shortStringBuffer;
-	getText(buffer);
+  char* buffer = shortStringBuffer;
+  getText(buffer);
 
-	if (strlen(buffer) <= NUMERIC_DISPLAY_LENGTH) {
-		numericDriver.setText(buffer, true);
-	}
-	else {
-		numericDriver.setScrollingText(buffer, startPos);
-	}
+  if (strlen(buffer) <= NUMERIC_DISPLAY_LENGTH) {
+    numericDriver.setText(buffer, true);
+  } else {
+    numericDriver.setScrollingText(buffer, startPos);
+  }
 #endif
 }
-
-
 
 void MenuItemRange::drawValueForEditingRange(bool blinkImmediately) {
 #if HAVE_OLED
-	renderUIsForOled();
+  renderUIsForOled();
 #else
-	int leftLength, rightLength;
-	char* buffer = shortStringBuffer;
+  int   leftLength, rightLength;
+  char* buffer = shortStringBuffer;
 
-	getText(buffer, &leftLength, &rightLength, false);
+  getText(buffer, &leftLength, &rightLength, false);
 
-	int textLength = leftLength + rightLength + 1;
+  int textLength = leftLength + rightLength + 1;
 
-    uint8_t blinkMask[NUMERIC_DISPLAY_LENGTH];
-	if (soundEditor.editingRangeEdge == RANGE_EDIT_LEFT) {
-		for (int i = 0; i < NUMERIC_DISPLAY_LENGTH; i++) {
-			if (i < leftLength + NUMERIC_DISPLAY_LENGTH - getMin(4, textLength)) blinkMask[i] = 0;
-			else blinkMask[i] = 255;
-		}
-	}
+  uint8_t blinkMask[NUMERIC_DISPLAY_LENGTH];
+  if (soundEditor.editingRangeEdge == RANGE_EDIT_LEFT) {
+    for (int i = 0; i < NUMERIC_DISPLAY_LENGTH; i++) {
+      if (i < leftLength + NUMERIC_DISPLAY_LENGTH - getMin(4, textLength))
+        blinkMask[i] = 0;
+      else
+        blinkMask[i] = 255;
+    }
+  }
 
-	else {
-		for (int i = 0; i < NUMERIC_DISPLAY_LENGTH; i++) {
-			if (NUMERIC_DISPLAY_LENGTH - 1 - i < rightLength) blinkMask[i] = 0;
-			else blinkMask[i] = 255;
-		}
-	}
+  else {
+    for (int i = 0; i < NUMERIC_DISPLAY_LENGTH; i++) {
+      if (NUMERIC_DISPLAY_LENGTH - 1 - i < rightLength)
+        blinkMask[i] = 0;
+      else
+        blinkMask[i] = 255;
+    }
+  }
 
-	bool alignRight = (soundEditor.editingRangeEdge == RANGE_EDIT_RIGHT) || (textLength < NUMERIC_DISPLAY_LENGTH);
+  bool alignRight =
+      (soundEditor.editingRangeEdge == RANGE_EDIT_RIGHT) || (textLength < NUMERIC_DISPLAY_LENGTH);
 
-	IndicatorLEDs::blinkLed(backLedX, backLedY, 255, 0, !blinkImmediately); // Sorta hackish, to reset timing of blinking LED and always show text "on" initially on edit value
-	numericDriver.setText(buffer, alignRight, 255, true, blinkMask);
+  IndicatorLEDs::blinkLed(backLedX,
+                          backLedY,
+                          255,
+                          0,
+                          !blinkImmediately); // Sorta hackish, to reset timing of blinking LED and
+                                              // always show text "on" initially on edit value
+  numericDriver.setText(buffer, alignRight, 255, true, blinkMask);
 
-	soundEditor.possibleChangeToCurrentRangeDisplay();
+  soundEditor.possibleChangeToCurrentRangeDisplay();
 #endif
 }
 
-
 #if HAVE_OLED
 void MenuItemRange::drawPixelsForOled() {
-	int leftLength, rightLength;
-	char* buffer = shortStringBuffer;
+  int   leftLength, rightLength;
+  char* buffer = shortStringBuffer;
 
-	getText(buffer, &leftLength, &rightLength, !soundEditor.editingRangeEdge);
+  getText(buffer, &leftLength, &rightLength, !soundEditor.editingRangeEdge);
 
-	int textLength = leftLength + rightLength + (bool)rightLength;
+  int textLength = leftLength + rightLength + (bool)rightLength;
 
-	int baseY = 18;
-	int digitWidth = TEXT_HUGE_SPACING_X;
-	int digitHeight = TEXT_HUGE_SIZE_Y;
+  int baseY       = 18;
+  int digitWidth  = TEXT_HUGE_SPACING_X;
+  int digitHeight = TEXT_HUGE_SIZE_Y;
 
-	int stringWidth = digitWidth * textLength;
-	int stringStartX = (OLED_MAIN_WIDTH_PIXELS - stringWidth) >> 1;
+  int stringWidth  = digitWidth * textLength;
+  int stringStartX = (OLED_MAIN_WIDTH_PIXELS - stringWidth) >> 1;
 
-	OLED::drawString(buffer, stringStartX, baseY, OLED::oledMainImage[0], OLED_MAIN_WIDTH_PIXELS, digitWidth, digitHeight);
+  OLED::drawString(buffer,
+                   stringStartX,
+                   baseY,
+                   OLED::oledMainImage[0],
+                   OLED_MAIN_WIDTH_PIXELS,
+                   digitWidth,
+                   digitHeight);
 
-	int hilightStartX, hilightWidth;
+  int hilightStartX, hilightWidth;
 
-	if (soundEditor.editingRangeEdge == RANGE_EDIT_LEFT) {
-		hilightStartX = stringStartX;
-		hilightWidth = digitWidth * leftLength;
-doHilightJustOneEdge:
-		OLED::invertArea(hilightStartX, hilightWidth, baseY - 1, baseY + digitHeight + 1, OLED::oledMainImage);
-	}
-	else if (soundEditor.editingRangeEdge == RANGE_EDIT_RIGHT) {
-		int stringEndX = (OLED_MAIN_WIDTH_PIXELS + stringWidth) >> 1;
-		hilightWidth = digitWidth * rightLength;
-		hilightStartX = stringEndX - hilightWidth;
-		goto doHilightJustOneEdge;
-	}
+  if (soundEditor.editingRangeEdge == RANGE_EDIT_LEFT) {
+    hilightStartX = stringStartX;
+    hilightWidth  = digitWidth * leftLength;
+  doHilightJustOneEdge:
+    OLED::invertArea(hilightStartX,
+                     hilightWidth,
+                     baseY - 1,
+                     baseY + digitHeight + 1,
+                     OLED::oledMainImage);
+  } else if (soundEditor.editingRangeEdge == RANGE_EDIT_RIGHT) {
+    int stringEndX = (OLED_MAIN_WIDTH_PIXELS + stringWidth) >> 1;
+    hilightWidth   = digitWidth * rightLength;
+    hilightStartX  = stringEndX - hilightWidth;
+    goto doHilightJustOneEdge;
+  }
 }
 #endif

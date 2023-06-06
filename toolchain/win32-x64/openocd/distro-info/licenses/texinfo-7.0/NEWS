@@ -99,7 +99,7 @@ See the manual for detailed information.
 * Other
   . build fixed for glibc 2.34
 
-
+
 6.8 (3 July 2021)
 * Language
   . new command @displaymath for formatting of mathematical notation
@@ -145,7 +145,7 @@ See the manual for detailed information.
 * Distribution
   . autoconf 2.71, automake 1.16.3, gettext 0.21
 
-
+
 6.7 (23 September 2019)
 * Language:
   . support of index subentries and sub-subentries with @subentry
@@ -159,7 +159,7 @@ See the manual for detailed information.
     with the 'rel' attribute of the 'a' tag.
   . TOP_NODE_UP is now only used in HTML if TOP_NODE_UP_URL is set.
     Also TOP_NODE_UP should now be formatted in the output format.
-    In HTML TOP_NODE_UP should be suitable for inclusion in HTML 
+    In HTML TOP_NODE_UP should be suitable for inclusion in HTML
     element attributes, so for instance should not contain elements.
   . support of noderename.cnf files has been removed
   . INPUT_PERL_ENCODING, INPUT_ENCODING_NAME, NODE_FILE_EXTENSION,
@@ -183,13 +183,13 @@ See the manual for detailed information.
   . Several obsolete portability checks removed
   . gettext 0.20.1, automake 1.16.1
 
-
+
 6.6 (16 February 2019)
 * Language:
   . new commands @&, @ampchar{}
   . @cropmarks command removed
   . @ctrl is no longer recognised (it was a way to insert literal
-    control characters in Info files, but deprecated since the 
+    control characters in Info files, but deprecated since the
     time of Texinfo version 2)
   . \usebracesinindexestrue is no longer recommended for using braces in
     index entries, and has been a no-op for some time
@@ -217,7 +217,7 @@ See the manual for detailed information.
   . @indent and @noindent are not allowed inside the arguments to
     commands where they are not meaningful
   . @quote-arg and @allow-recursion are not recognised (these two used
-    to be recognised by makeinfo in macro definitions but were never 
+    to be recognised by makeinfo in macro definitions but were never
     implemented in texinfo.tex)
   . `FIX_TEXINFO' removed as a customization variable
   . do not recognise or warn about obsolete customization variables
@@ -230,7 +230,7 @@ See the manual for detailed information.
      - https://savannah.gnu.org/git/?group=texinfo
   . automake 1.16
 
-
+
 6.5 (12 September 2017)
 * info:
   . some bugs fixed:
@@ -260,7 +260,7 @@ See the manual for detailed information.
     will always occur within first 1024 bytes of file
   . `INLINE_INSERTCOPYING' removed as a customization variable
 
-
+
 6.4 (23 June 2017)
 * texi2any:
   . for HTML output, place section names before the manual in page
@@ -290,11 +290,11 @@ See the manual for detailed information.
   . better portability in test suite
   . do not fall back to showing the dir node if a manual isn't found
   . Do not attempt any kind of conversion of CR LF line endings,
-    except on MS-DOS/Windows, when it is done unconditionally.  (This 
-    replaces a more complicated approach, where this conversion would 
-    take place if there was a problem finding a node in a file.)  The 
-    main effect of this change is that Info files with CR LF line 
-    endings, which would have been produced on MS-DOS/Windows with old 
+    except on MS-DOS/Windows, when it is done unconditionally.  (This
+    replaces a more complicated approach, where this conversion would
+    take place if there was a problem finding a node in a file.)  The
+    main effect of this change is that Info files with CR LF line
+    endings, which would have been produced on MS-DOS/Windows with old
     versions of makeinfo, are only supported on such operating systems.
   . a few of the key bindings under --vi-keys have been changed for
     consistency or to match the documentation
@@ -307,7 +307,7 @@ See the manual for detailed information.
   . autoconf 2.69, automake 1.15, gettext 0.19.8
 
 
-
+
 6.3 (10 September 2016)
 
 * Language:
@@ -317,7 +317,7 @@ See the manual for detailed information.
 
 * texinfo.tex:
   . For a couple of characters (opening and closing braces), use glyphs
-    from the standard TeX math fonts instead of using EC fonts which are 
+    from the standard TeX math fonts instead of using EC fonts which are
     less likely to be installed.
   . Use of user-defined macros in the text of an index entry is more
     reliable when the text contains Texinfo @-commands.
@@ -326,7 +326,7 @@ See the manual for detailed information.
   . Support added for native UTF-8 support with XeTeX and LuaTeX.
   . Support of PDF output with XeTeX improved.
   . You can use a new file doc/texinfo-ja.tex for Texinfo documents in
-    Japanese.  doc/short-sample-ja.tex is a sample document.  New 
+    Japanese.  doc/short-sample-ja.tex is a sample document.  New
     support file doc/txi-ja.tex for Japanese.
 
 * texi2any:
@@ -334,7 +334,7 @@ See the manual for detailed information.
 
 * texi2dvi:
   . Can now process files whose absolute paths contain space characters,
-    as long a relative path to the file is given.  Better support of 
+    as long a relative path to the file is given.  Better support of
     files with unusual characters in their names.
   . No longer exits prematurely in some circumstances (due to the script
     running under "set -e").
@@ -347,16 +347,16 @@ See the manual for detailed information.
 6.2 (withdrawn)
 
 
-
+
 6.1 (06 February 2016)
 
 * Language:
   . You can now omit the @menu from nodes with other nodes below them in
-    the document structure.  If you use "@validatemenus off" near the 
-    start of a Texinfo file, makeinfo will, where needed, create a menu 
+    the document structure.  If you use "@validatemenus off" near the
+    start of a Texinfo file, makeinfo will, where needed, create a menu
     for nodes lacking one given explicitly.
   . An @setfilename line is no longer required at the start of a
-    Texinfo file.  (Be aware, though, that some other tools may require 
+    Texinfo file.  (Be aware, though, that some other tools may require
     it, for example Automake.)
   . For processing with TeX, a comma is automatically provided following
     a cross-reference command (such as @xref) when needed to separate
@@ -367,10 +367,10 @@ See the manual for detailed information.
 
 * texi2any:
   . Some Perl modules have been rewritten in C to increase speed.
-    If Perl extensions can be created, they are used by default; 
+    If Perl extensions can be created, they are used by default;
     otherwise the pure Perl implementations are still used.
-    Disable at build time with "configure --disable-perl-xs".  The 
-    environment variable TEXINFO_XS controls how they are used by 
+    Disable at build time with "configure --disable-perl-xs".  The
+    environment variable TEXINFO_XS controls how they are used by
     texi2any.
   . Quotation marks are left out for node names and index entries in
     Info output where they would have been produced by commands such
@@ -383,14 +383,14 @@ See the manual for detailed information.
 
 * texinfo.tex:
   . You may explicitly specify a sort key for an index entry by preceding
-    the text of the entry with the @sortas commmand with the sort key 
+    the text of the entry with the @sortas commmand with the sort key
     desired as a braced argument.   Additionally, you may choose to
-    ignore all occurences of the characters \, @, <, and - using new 
+    ignore all occurences of the characters \, @, <, and - using new
     flags you can specify with @set: `txiindexbackslashignore',
     `txiindexatsignignore', `txiindexlessthanignore', and
     `txiindexhyphenignore' respectively.
   . Changes to macro handling to more closely match makeinfo.  Ends of
-    lines are preserved in an argument to a macro taking a single 
+    lines are preserved in an argument to a macro taking a single
     argument.
   . By default, suppress heading line on a page with a chapter on it, to
     avoid having the chapter title repeated.
@@ -401,13 +401,13 @@ See the manual for detailed information.
     number of user-defined indices, because you will not bump into TeX's
     limit of 16 open files at once so soon.
   . For initials in indices that are non-alphanumeric characters (for
-    example, backslash, or braces), avoid use of a typewriter font.  
+    example, backslash, or braces), avoid use of a typewriter font.
     This gives a more consistent appearance.
   . Have a stronger preference for breaking a column in an index before
     a letter heading.
   . Formatting improvements in tables of contents and indices.  Entries
-    can extend slightly into the margin instead of being broken across 
-    two lines, and text is split more evenly across lines.  Reduce 
+    can extend slightly into the margin instead of being broken across
+    two lines, and text is split more evenly across lines.  Reduce
     chance of an orphaned index entry appearing at the top of a column.
   . Support character encodings beyond ASCII for XeTeX and LuaTeX by
     reading file input byte-by-byte.
@@ -418,7 +418,7 @@ See the manual for detailed information.
 
 * info:
   . New user variables `link-style', `active-link-style', and
-    `match-style' enable customization of how cross-references and search 
+    `match-style' enable customization of how cross-references and search
     matches are highlighted.
   . By default only the node pointers are displayed at the top of a node.
     Customize this with the `nodeline' variable.
@@ -448,7 +448,7 @@ See the manual for detailed information.
 * Distribution:
   . automake-1.15, gettext-0.19.6.
 
-
+
 6.0 (26 June 2015)
 * Language:
   . new commands @sub and @sup, for textual subscripts and superscripts.
@@ -488,7 +488,7 @@ See the manual for detailed information.
     Info directory from the Info search path.
   . support input of multibyte characters for searches in a UTF-8 locale.
   . if reading an Info file that is known to be in a different character
-    encoding to that of the user's environment, convert its contents 
+    encoding to that of the user's environment, convert its contents
     when displayed and substitute missing characters
   . new command M-x info-version.
   . the M-x kill-node command has been removed.
@@ -520,7 +520,7 @@ See the manual for detailed information.
   . new translation ca (catalan).
   . automake-1.15, gettext-0.19.4.
 
-
+
 5.2 (26 September 2013)
 * Language:
   . new commands @inlinefmtifelse, @inlineifset, @inlineifclear, for
@@ -553,23 +553,23 @@ See the manual for detailed information.
 
 * Distribution: automake-1.14, gettext-0.18.3.1.
 
-
+
 5.1 (12 March 2013)
 * texi2any:
   . irregular sectioning trees (see 5.0 news item) produce a warning
     rather than an error.
   . @set in the middle of the line no longer produces a warning.
-  
+
 * info:
   . lzip (.lz) compression supported.
-  
+
 * install-info:
   . lzip (.lz) compression supported.
 
 * Development: switch from CVS to Subversion.
   https://savannah.gnu.org/svn/?group=texinfo
 
-
+
 5.0 (16 February 2013)
 * Language:
   . Texinfo commands are supported in node names.
@@ -608,7 +608,7 @@ See the manual for detailed information.
 
   The new implementation is in Perl, requiring Perl 5.7.3 (released in
   March 2002) and its standard Encode module.
-  
+
   The Perl texi2any/makeinfo both replaces and is intended to be (for
   all practical purposes) upward-compatible with the C makeinfo.  It has
   many new features not in the C makeinfo.  For example, cross-manual
@@ -616,29 +616,29 @@ See the manual for detailed information.
   customization of the HTML output.  See the `Generic Translator
   texi2any' chapter in the manual (among other places) for more about
   this reimplementation.
-  
+
   The new program is, unfortunately, noticeably slower at present than
   the C program was.  We hope all the many improvements make the new
   version worthwhile for users nevertheless.
 
 * Intentional incompatibilities with the previous implementation of
   makeinfo, through version 4.13:
-  
+
   . The old implementation accepted a lone block of text inside @itemize,
     @enumerate, etc., without any @item.  This is semantically
     inconsistent, leading to problems with some backends, and thus now
     produces a warning.
-    
+
   . The old implementation accepted ``irregular'' sectioning trees.  Now,
     when @node pointers are implicitly determined, the consistency of
     @menu and the sectioning tree is checked.  (If node pointers are
     explicitly specified in the document, the tree can still be irregular.)
-  
+
   . The old implementation always added blank lines between function
     definitions if they weren't already there.  Now blank lines are not
     added.  (Both old and new implementations preserve blank lines that
     are present.)
-    
+
   . The old implementation processed macros in place, formatting the
     replacement text with the output.  Now the replacement text is
     textually substituted as Texinfo source.  A consequence of the old
@@ -649,7 +649,7 @@ See the manual for detailed information.
 
 * pod2texi is a new (Perl) program that uses the capabilities of
   texi2any to translate Perl pod documentation to Texinfo.
-  
+
 * texinfo.tex:
   . urls (given to @uref and @url) are broken by default at special
     characters; behavior controllable with @urefbreakstyle.
@@ -666,7 +666,7 @@ See the manual for detailed information.
   . new option --max-iterations.
   . official updates between full package releases available at
     http://ftpmirror.gnu.org/texinfo/texi2dvi.
-  
+
 * info:
   . INFOPATH is determined from PATH by default, or if an element "PATH"
     is specified.
@@ -695,7 +695,7 @@ See the manual for detailed information.
   . documentation license now GFDLv1.3 or later.
   . autoconf 2.69, automake 1.13.1, gettext 0.18.2.
 
-
+
 4.13 (18 September 2008)
 
 * A reference card for Texinfo is now available, in doc/refcard.  For
@@ -705,7 +705,7 @@ See the manual for detailed information.
   . new option --internal-links for HTML output, to write a tsv file
     mapping indexed/toc terms to links, for easy reference from external
     documents.
-  . - as an input file name reads standard input. 
+  . - as an input file name reads standard input.
 
 * info:
   . support for multibyte encodings such as UTF-8.
@@ -713,14 +713,14 @@ See the manual for detailed information.
     sequences.
   . new environment variable INFO_MAN_COMMAND sets the name of man executable
     (use it if you a need to override PATH settings).
-  
+
 * install-info:
   . bug fix: support names with embedded periods (e.g., config.status) again.
 
 * Distribution:
   . autoconf 2.63.
 
-
+
 4.12 (20 April 2008)
 
 * Language:
@@ -776,7 +776,7 @@ See the manual for detailed information.
   . bug fixes in make check (and elsewhere).
   . gettext 0.17, automake 1.10.1, autoconf 2.62.
 
-
+
 4.11 (9 September 2007)
 
 * Language:
@@ -833,7 +833,7 @@ See the manual for detailed information.
 
 4.10 (omitted)
 
-
+
 4.9 (29 June 2007)
 * GPLv3.
 * texi2dvi:
@@ -856,7 +856,7 @@ See the manual for detailed information.
   . section names with \ characters work properly in pdf outlines.
   . have .toc files use @ as the escape character, instead of \.
 
-
+
 4.8 (31 December 2004)
 * Language:
   . new command @euro for the Euro currency symbol, and
@@ -883,7 +883,7 @@ See the manual for detailed information.
     distributions which do have the files installed.
   . automake 1.9.4.
 
-
+
 4.7 (9 April 2004)
 * Language:
   . new commands @float, @caption, @shortcaption, @listoffloats for
@@ -953,7 +953,7 @@ See the manual for detailed information.
   . New translation: nb.
   . automake 1.8.3, autoconf 2.59, gettext 0.14.1.
 
-
+
 4.6 (10 June 2003)
 * Language:
   . new command @/ specifies an allowable breakpoint within a line.
@@ -992,14 +992,14 @@ See the manual for detailed information.
   . variables now declared const where appropriate.
   . gettext 0.12.1, automake 1.7.5.
 
-
+
 4.5 (4 February 2003)
 * info:
   . a bug in 4.4 prevented compressed info files from being found.
 * Distribution:
   . detect sys/ptem.h on Solaris.
 
-
+
 4.4 (31 January 2003)
 * Language:
   . The ' (ASCII apostrophe/right quote) character is finally allowed in
@@ -1034,7 +1034,7 @@ See the manual for detailed information.
     (http://savannah.gnu.org/projects/gnulib/).
   . autoconf 2.57, automake 1.7.2.
 
-
+
 4.3 (14 November 2002)
 * Language:
   . new command @tie{} to do a real tie (unbreakable interword space).
@@ -1061,7 +1061,7 @@ See the manual for detailed information.
  . Turkish message translation.
  . gettext 0.11.5, autoconf 2.54, automake 1.7.1.
 
-
+
 *** NEWS FOR ALL AUTHORS OF TEXINFO MANUALS ***
 
 As of version 4.2, Texinfo has a command @copying to define the
@@ -1094,7 +1094,7 @@ one of the relevant sections:
     at make time, to appease Automake's make distcheck.
   . gettext 0.11.1, autoconf 2.53, automake 1.6 (with install-info kludge).
 
-
+
 4.1 (4 March 2002)
 * Language:
   . new commands @verbatim and @verb for printing verbatim inserts.
@@ -1123,7 +1123,7 @@ one of the relevant sections:
   . update to GNU gettext 0.11, autoconf 2.52, and automake 1.5.
   . Danish, Swedish, and Hebrew message translations.
 
-
+
 4.0 (28 September 1999)
 * Language:
   . New command @anchor for cross references to arbitrary points.
@@ -1226,14 +1226,14 @@ one of the relevant sections:
   . Various translations for texinfo.tex fixed words included.
   . DJGPP support.
 
-
+
 3.12 (3 March 1998)
 * Elisp files removed, since they are only usefully distributed with Emacs.
 * Restore inclusion of compile-time $(infodir) to INFOPATH.
 * install-info creates a proper dir file.
 * Various portability fixes.
 
-
+
 3.11 (31 July 1997)
 * New commands:
   - @uref to make a reference to a url; @url now only indicates such.
@@ -1268,7 +1268,7 @@ one of the relevant sections:
 
 3.10 (omitted)
 
-
+
 3.9 (4 October 1996)
 * makeinfo:
   - Give a suppressible (with --no-validate) error for references
@@ -1281,7 +1281,7 @@ one of the relevant sections:
 * configure: Include replacements for memcpy and memmove functions in
   the distribution, in case they are missing.
 
-
+
 3.8 (30 September 1996)
 * Define and/or document new and/or previously existing commands:
   Accents: @" @' @, @" @= @^ @` @~ @H @d @dotaccent @dotless @ringaccent
@@ -1328,50 +1328,50 @@ one of the relevant sections:
     @setchapterstyle
     @titlespec
 
-
+
 3.7 (24 December 1995)
 * Have --version print texinfo release number as well as the individual
   program version.
 * Better man page cleaning.
 * Update Elisp files from current Emacs release.
 
-
+
 3.6 (21 June 1995)
 * Unmatched brace error reporting improved.
 * Missing comment terminator prevented compilation.
 
-
+
 3.5 (20 June 1995)
 * Autoconf update.
 * Support for parallel makes.
 * make install does not install Elisp files.
 
-
+
 3.4 (19 June 1995)
 * Handle @ifhtml in Elisp.
 * Update FSF address.
 
-
+
 3.3 (15 June 1995)
 * Portability changes.
 * Compile Elisp files.
 * Don't distribute .info* files.
 
-
+
 3.2 (9 June 1995)
 * Standalone Info can read Unix man pages.
 * New commands: @! @? @^ @" @enddots.
 * makeinfo -E does macro expansion (and nothing else).
 
-
+
 3.1 (23 May 1993)
 Just bug fixes, see ChangeLog for full details.
 
-
+
 3.0: first release of Texinfo version 2, with many new commands.
 
 
-
+
 Here is the separate NEWS for old releases of Info:
 
 Version 2.11,     Sat Apr  1 09:15:21 1995
@@ -1388,7 +1388,7 @@ do not explicitly name the node to which they are attached have the
 menu item name looked up as an Info file if it is not found within the
 current document.  This means that the menu item:
 
-* Info::		The Info documentation reader.
+* Info::        The Info documentation reader.
 
 in (dir) refers to the info node "(info)Top".
 
@@ -1436,7 +1436,7 @@ Note that versions 2.6 and 2.7 Beta were only released to a select group.
   treat the label as a file name.  For example, a menu entry in "DIR"
   might contain:
 
-    * Emacs::		Cool text-editor.
+    * Emacs::       Cool text-editor.
 
   Info would not find the node "(dir)Emacs", so just plain "(emacs)"
   would be tried.
@@ -1486,45 +1486,45 @@ Note that versions 2.6 and 2.7 Beta were only released to a select group.
 
   Variable Name      Default Value  Description
   -------------      -------------  -----------
-  `automatic-footnotes' On	    When "On", footnotes appear and
-				    disappear automatically.
+  `automatic-footnotes' On      When "On", footnotes appear and
+                    disappear automatically.
 
-  `automatic-tiling'    Off	    When "On", creating of deleting a
-				    window resizes other windows.
+  `automatic-tiling'    Off     When "On", creating of deleting a
+                    window resizes other windows.
 
-  `visible-bell'        Off	    If non-zero, try to use a visible bell.
+  `visible-bell'        Off     If non-zero, try to use a visible bell.
 
-  `errors-ring-bell'    On	    If non-zero, errors cause a ring.
+  `errors-ring-bell'    On      If non-zero, errors cause a ring.
 
-  `show-index-match'    On	    If non-zero, the portion of the string
-				    matched is highlighted by changing its
-				    case.
+  `show-index-match'    On      If non-zero, the portion of the string
+                    matched is highlighted by changing its
+                    case.
 
   `scroll-behaviour'    Continuous  One of "Continuous", "Next Only", or
-				    "Page Only".  "Page Only" prevents you from
-				    scrolling past the bottom or top of a node.
-				    "Next Only" causes the Next or Prev node to
-				    be selected when you scroll past the bottom
-				    or top of a node.  "Continous" moves
-				    linearly through the files hierarchical
-				    structure.
+                    "Page Only".  "Page Only" prevents you from
+                    scrolling past the bottom or top of a node.
+                    "Next Only" causes the Next or Prev node to
+                    be selected when you scroll past the bottom
+                    or top of a node.  "Continous" moves
+                    linearly through the files hierarchical
+                    structure.
 
-  `scroll-step'	        0	    Controls how scrolling is done for you when
-				    the cursor moves out of the current window.
-				    Non-zero means it is the number of lines
-				    you would like the screen to shift.  A
-				    value of 0 means to center the line
-				    containing the cursor in the window.
+  `scroll-step'         0       Controls how scrolling is done for you when
+                    the cursor moves out of the current window.
+                    Non-zero means it is the number of lines
+                    you would like the screen to shift.  A
+                    value of 0 means to center the line
+                    containing the cursor in the window.
 
-  `gc-compressed-files' Off	    If non-zero means it is okay to reclaim the
-				    file buffer space allocated to a file which
-				    was compressed, if, and only if, that
-				    file's contents do not appear in the node
-				    list of any window.
+  `gc-compressed-files' Off     If non-zero means it is okay to reclaim the
+                    file buffer space allocated to a file which
+                    was compressed, if, and only if, that
+                    file's contents do not appear in the node
+                    list of any window.
 
-  `ISO-Latin'	        Off	    Non-zero means that you are using an ISO
-				    Latin character set.  By default, standard
-				    ASCII characters are assumed.
+  `ISO-Latin'           Off     Non-zero means that you are using an ISO
+                    Latin character set.  By default, standard
+                    ASCII characters are assumed.
 ________________________________________
 This release of Info is version 2.5 beta.
 

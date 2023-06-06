@@ -4,13 +4,13 @@ echo "\n\nFirmware recovery helpers"
 echo "Use -c firmware_help to get help\n"
 
 set known_boards {
-    "asus-rt-n16		ASUS RT-N16"
-    "asus-rt-n66u		ASUS RT-N66U"
-    "linksys-wag200g		Linksys WAG200G"
-    "linksys-wrt54gl		Linksys WRT54GL v1.1"
-    "netgear-dg834v3		Netgear DG834G v3"
-    "tp-link_tl-mr3020		TP-LINK TL-MR3020"
-    "bt-homehubv1		BT HomeHub v1"
+    "asus-rt-n16        ASUS RT-N16"
+    "asus-rt-n66u       ASUS RT-N66U"
+    "linksys-wag200g        Linksys WAG200G"
+    "linksys-wrt54gl        Linksys WRT54GL v1.1"
+    "netgear-dg834v3        Netgear DG834G v3"
+    "tp-link_tl-mr3020      TP-LINK TL-MR3020"
+    "bt-homehubv1       BT HomeHub v1"
 }
 
 proc firmware_help { } {
@@ -23,19 +23,19 @@ Where:
 <commands> are firmware-recovery commands separated by semicolon
 
 Supported commands:
-firmware_help			get this help
-list_boards			list known boards and exit
-board <name>			select board you work with
-list_partitions			list partitions of the currently selected board
-dump_part <name> <filename>	save partition's contents to a file
-erase_part <name>		erase the given partition
-flash_part <name> <filename>	erase, flash and verify the given partition
-ram_boot <filename>		load binary file to RAM and run it
-adapter speed <freq>		set JTAG clock frequency in kHz
+firmware_help           get this help
+list_boards         list known boards and exit
+board <name>            select board you work with
+list_partitions         list partitions of the currently selected board
+dump_part <name> <filename> save partition's contents to a file
+erase_part <name>       erase the given partition
+flash_part <name> <filename>    erase, flash and verify the given partition
+ram_boot <filename>     load binary file to RAM and run it
+adapter speed <freq>        set JTAG clock frequency in kHz
 
 For example, to clear nvram and reflash CFE on an RT-N16 using TUMPA, run:
 openocd -f interface/ftdi/tumpa.cfg -f tools/firmware-recovery.tcl \\
-	-c \"board asus-rt-n16; erase_part nvram; flash_part CFE cfe-n16.bin; shutdown\"
+    -c \"board asus-rt-n16; erase_part nvram; flash_part CFE cfe-n16.bin; shutdown\"
 \n\n"
     shutdown
 }
@@ -58,7 +58,7 @@ proc list_boards { } {
     echo "Board name\t\tDescription"
     echo "-----------------------------------"
     foreach i $known_boards {
-	echo $i
+    echo $i
     }
     echo "\n\n"
 }
@@ -74,8 +74,8 @@ proc list_partitions { } {
     echo [format $fstr Name Start Size Description]
     echo "-------------------------------------------------------"
     for {set i 0} {$i < [llength $partition_list]} {incr i 2} {
-	set key [lindex $partition_list $i]
-	echo [format $fstr $key [partition_start $key] [partition_size $key] [partition_desc $key]]
+    set key [lindex $partition_list $i]
+    echo [format $fstr $key [partition_start $key] [partition_size $key] [partition_desc $key]]
     }
     echo "\n\n"
 }

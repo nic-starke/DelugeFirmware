@@ -66,14 +66,14 @@ proc iswithin { ADDRESS BASE LEN } {
 proc address_info { ADDRESS } {
 
     foreach WHERE { FLASH RAM MMREGS XMEM UNKNOWN } {
-	if { info exists $WHERE } {
-	    set lmt [set N_[set WHERE]]
-	    for { set region 0 } { $region < $lmt } { incr region } {
-		if { iswithin $ADDRESS $WHERE($region,BASE) $WHERE($region,LEN) } {
-		    return  "$WHERE $region";
-		}
-	    }
-	}
+    if { info exists $WHERE } {
+        set lmt [set N_[set WHERE]]
+        for { set region 0 } { $region < $lmt } { incr region } {
+        if { iswithin $ADDRESS $WHERE($region,BASE) $WHERE($region,LEN) } {
+            return  "$WHERE $region";
+        }
+        }
+    }
     }
 
     # Return the 'unknown'
@@ -82,96 +82,96 @@ proc address_info { ADDRESS } {
 
 proc memread32 {ADDR} {
     if ![ catch { set foo [read_memory $ADDR 32 1] } msg ] {
-	return $foo
+    return $foo
     } else {
-	error "memread32: $msg"
+    error "memread32: $msg"
     }
 }
 
 proc memread16 {ADDR} {
     if ![ catch { set foo [read_memory $ADDR 16 1] } msg ] {
-	return $foo
+    return $foo
     } else {
-	error "memread16: $msg"
+    error "memread16: $msg"
     }
 }
 
 proc memread8 {ADDR} {
     if ![ catch { set foo [read_memory $ADDR 8 1] } msg ] {
-	return $foo
+    return $foo
     } else {
-	error "memread8: $msg"
+    error "memread8: $msg"
     }
 }
 
 proc memwrite32 {ADDR DATA} {
     if ![ catch { write_memory $ADDR 32 $DATA } msg ] {
-	return $DATA
+    return $DATA
     } else {
-	error "memwrite32: $msg"
+    error "memwrite32: $msg"
     }
 }
 
 proc memwrite16 {ADDR DATA} {
     if ![ catch { write_memory $ADDR 16 $DATA } msg ] {
-	return $DATA
+    return $DATA
     } else {
-	error "memwrite16: $msg"
+    error "memwrite16: $msg"
     }
 }
 
 proc memwrite8 {ADDR DATA} {
     if ![ catch { write_memory $ADDR 8 $DATA } msg ] {
-	return $DATA
+    return $DATA
     } else {
-	error "memwrite8: $msg"
+    error "memwrite8: $msg"
     }
 }
 
 proc memread32_phys {ADDR} {
     if ![ catch { set foo [read_memory $ADDR 32 1 phys] } msg ] {
-	return $foo
+    return $foo
     } else {
-	error "memread32: $msg"
+    error "memread32: $msg"
     }
 }
 
 proc memread16_phys {ADDR} {
     if ![ catch { set foo [read_memory $ADDR 16 1 phys] } msg ] {
-	return $foo
+    return $foo
     } else {
-	error "memread16: $msg"
+    error "memread16: $msg"
     }
 }
 
 proc memread8_phys {ADDR} {
     if ![ catch { set foo [read_memory $ADDR 8 1 phys] } msg ] {
-	return $foo
+    return $foo
     } else {
-	error "memread8: $msg"
+    error "memread8: $msg"
     }
 }
 
 proc memwrite32_phys {ADDR DATA} {
     if ![ catch { write_memory $ADDR 32 $DATA phys } msg ] {
-	return $DATA
+    return $DATA
     } else {
-	error "memwrite32: $msg"
+    error "memwrite32: $msg"
     }
 }
 
 proc memwrite16_phys {ADDR DATA} {
     if ![ catch { write_memory $ADDR 16 $DATA phys } msg ] {
-	return $DATA
+    return $DATA
     } else {
-	error "memwrite16: $msg"
+    error "memwrite16: $msg"
     }
 }
 
 proc memwrite8_phys {ADDR DATA} {
     if ![ catch { write_memory $ADDR 8 $DATA phys } msg ] {
-	return $DATA
+    return $DATA
     } else {
-	error "memwrite8: $msg"
+    error "memwrite8: $msg"
     }
 }

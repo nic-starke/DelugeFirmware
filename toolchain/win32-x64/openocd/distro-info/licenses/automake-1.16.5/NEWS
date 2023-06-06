@@ -2220,9 +2220,9 @@ Bugs fixed in 1.8.3:
   - Automake would sometimes fail to define rules for targets listed
     in variables defined in multiple conditions.  For instance on
       if C1
-	bin_PROGRAMS = a
+    bin_PROGRAMS = a
       else
-	bin_PROGRAMS = b
+    bin_PROGRAMS = b
       endif
     it would define only the `a.$(OBJEXT): a.c' rule and omit the
     `b.$(OBJEXT): b.c' rule.
@@ -2374,8 +2374,8 @@ New in 1.8:
     to make the libtool module `foo.la' from `foo.c', you only need to
     do this:
 
-	lib_LTLIBRARIES = foo.la
-	foo_la_LDFLAGS  = -module
+    lib_LTLIBRARIES = foo.la
+    foo_la_LDFLAGS  = -module
 
     For backward compatibility, foo_la.c will be used instead of
     foo.c if this file exists or is the explicit target of a rule.
@@ -2621,14 +2621,14 @@ New in 1.8:
   - core dumps are no longer removed by the cleaning rules.  There are
     at least three reasons for this:
       1. These files should not be created by any build step,
-	 so their removal do not fit any of the cleaning rules.
-	 Actually, they may be precious to the developer.
+     so their removal do not fit any of the cleaning rules.
+     Actually, they may be precious to the developer.
       2. If such file is created during a build, then it's clearly a
          bug Automake should not hide.  Not removing the file will
          cause `make distcheck' to complain about its presence.
       3. Operating systems have different naming conventions for
          core dump files.  A core file on one system might be a
-	 completely legitimate data file on another system.
+     completely legitimate data file on another system.
 
   - RUNTESTFLAGS, CTAGSFLAGS, ETAGSFLAGS, JAVACFLAGS are no longer
     defined by Automake.  This means that any definition in the

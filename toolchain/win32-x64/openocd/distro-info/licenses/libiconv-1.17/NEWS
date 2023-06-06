@@ -201,4 +201,3 @@ New in 0.1:
 * Portability to Linux/glibc-2.0.x, Linux/libc5, OSF/1, FreeBSD.
 * Fixed a bug in the EUC-JP decoder. Extended the ISO-2022-JP-2 converter.
 * Made TIS-620 mapping consistent with glibc-2.1.
-

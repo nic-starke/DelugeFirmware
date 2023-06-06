@@ -10,8 +10,8 @@ JTAG Layer:
     TAP declaration no longer requires ircapture and mask attributes
     Scan chain setup should be more robust, with better diagnostics
     New TAP events:
-	"post-reset" for TAP-invariant setup code (TAPs not usable yet)
-	"setup" for use once TAPs are addressable (e.g. with ICEpick)
+    "post-reset" for TAP-invariant setup code (TAPs not usable yet)
+    "setup" for use once TAPs are addressable (e.g. with ICEpick)
     Overridable Tcl "init_reset" and "jtag_init" procedures
     Simple "autoprobe" mechanism to help simplify server setup
 
@@ -22,31 +22,31 @@ Boundary Scan:
 Target Layer:
     Warn on use of obsolete numeric target IDs
     New commands for use with Cortex-M3 processors:
-	"cortex_m3 disassemble" ... Thumb2 disassembly (UAL format)
-	"cortex_m3 vector_catch" ... traps certain hardware faults
-		without tying up breakpoint resources
+    "cortex_m3 disassemble" ... Thumb2 disassembly (UAL format)
+    "cortex_m3 vector_catch" ... traps certain hardware faults
+        without tying up breakpoint resources
     If you're willing to help debug it
-	VERY EARLY Cortex-A8 and ARMv7A support
-	Updated BeagleBoard.org hardware support
-	you may need to explicitly "reset" after connect-to-Beagle
+    VERY EARLY Cortex-A8 and ARMv7A support
+    Updated BeagleBoard.org hardware support
+    you may need to explicitly "reset" after connect-to-Beagle
     New commands for use with XScale processors: "xscale vector_table"
     ARM
-	bugfixes to single-stepping Thumb code
-	ETM: unavailable registers are not listed
-	ETB, ETM: report actual hardware status
+    bugfixes to single-stepping Thumb code
+    ETM: unavailable registers are not listed
+    ETB, ETM: report actual hardware status
     ARM9
-	name change:  "arm9 vector_catch" not "arm9tdmi vector_catch"
+    name change:  "arm9 vector_catch" not "arm9tdmi vector_catch"
     ARM11
-	single stepping support for i.MX31
-	bugfix for missing "arm11" prefix on "arm11 memwrite ..."
+    single stepping support for i.MX31
+    bugfix for missing "arm11" prefix on "arm11 memwrite ..."
     GDB support
-	gdb_attach command is gone
+    gdb_attach command is gone
 
 Flash Layer:
     The lpc2000 driver handles the new NXP LPC1700 (Cortex-M3) chips
     New drivers:
-	lpc2900, for NXP LPC2900 chips (ARM968 based)
-	mx3_nand, for imx31
+    lpc2900, for NXP LPC2900 chips (ARM968 based)
+    mx3_nand, for imx31
     New "last" flag for NOR "flash erase_sector" and "flash protect"
     The "nand erase N" command now erases all of bank N
     Speed up davinci_nand by about 3x
@@ -55,9 +55,9 @@ Board, Target, and Interface Configuration Scripts:
     Amontec JTAGkey2 support
     Cleanup and additions for the TI/Luminary Stellaris scripts
     LPC1768 target (and flash) support
-	Keil MCB1700 eval board
+    Keil MCB1700 eval board
     Samsung s3c2450
-	Mini2440 board
+    Mini2440 board
     Numeric TAP and Target identifiers now trigger warnings
     PXA255 partially enumerates
 

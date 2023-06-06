@@ -35,22 +35,22 @@
 *               : 21.10.2014 1.00
 *******************************************************************************/
 
-	.text
-	.code 32
+    .text
+    .code 32
 
-	.global R_CACHE_L1Init
+    .global R_CACHE_L1Init
 
-	.func R_CACHE_L1Init
+    .func R_CACHE_L1Init
 R_CACHE_L1Init:
 
 /******************************************************************************/
 /* Enable caches                                                              */
 /* Caches are controlled by the System Control Register:                      */
 /******************************************************************************/
-	MRC  p15, 0, r0, c1, c0, 0			              /* Read CP15 register 1 */
-	ORR  r0, r0, #(0x1 << 12)			                    /* Enable I Cache */
-	ORR  r0, r0, #(0x1 << 2)			                    /* Enable D Cache */
-	MCR  p15, 0, r0, c1, c0, 0			             /* Write CP15 register 1 */
+    MRC  p15, 0, r0, c1, c0, 0                        /* Read CP15 register 1 */
+    ORR  r0, r0, #(0x1 << 12)                               /* Enable I Cache */
+    ORR  r0, r0, #(0x1 << 2)                                /* Enable D Cache */
+    MCR  p15, 0, r0, c1, c0, 0                       /* Write CP15 register 1 */
 
 
 /******************************************************************************/
@@ -59,19 +59,19 @@ R_CACHE_L1Init:
 /* Branch prediction is controlled by the System Control Register:            */
 /* Set Bit 11 to enable branch prediction and return                          */
 /******************************************************************************/
-	MRC  p15, 0, r0, c1, c0, 0		  	      /* Read System Control Register */
-	ORR  r0, r0, #(0x1 << 11)
-	MCR  p15, 0, r0, c1, c0, 0			     /* Write System Control Register */
+    MRC  p15, 0, r0, c1, c0, 0                /* Read System Control Register */
+    ORR  r0, r0, #(0x1 << 11)
+    MCR  p15, 0, r0, c1, c0, 0               /* Write System Control Register */
 
 /******************************************************************************/
 /* Enable D-side prefetch                                                     */
 /******************************************************************************/
-	MRC  p15, 0, r0, c1, c0, 1			   /* Read Auxiliary Control Register */
-	ORR  r0, r0, #(0x1 << 2)			     /* Enable Dside prefetch */
-	MCR  p15, 0, r0, c1, c0, 1			/* Write Auxiliary Control Register */
+    MRC  p15, 0, r0, c1, c0, 1             /* Read Auxiliary Control Register */
+    ORR  r0, r0, #(0x1 << 2)                 /* Enable Dside prefetch */
+    MCR  p15, 0, r0, c1, c0, 1          /* Write Auxiliary Control Register */
 
-	BX   lr
+    BX   lr
 
-	.endfunc
-	.align 4
-	.end
+    .endfunc
+    .align 4
+    .end

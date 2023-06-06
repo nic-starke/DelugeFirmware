@@ -14,7 +14,7 @@ set RCC_CSR           [expr {$RCC_BASE + 0x24}]
 
 proc show_RCC_CR { } {
     if [ catch { set val [show_mmr32_reg RCC_CR] } msg ] {
-	error $msg
+    error $msg
     }
 
     show_mmr_bitfield  0  0 $val HSI      { OFF ON }
@@ -31,7 +31,7 @@ proc show_RCC_CR { } {
 
 proc show_RCC_CFGR { } {
     if [ catch { set val [show_mmr32_reg RCC_CFGR] } msg ] {
-	error $msg
+    error $msg
     }
 
 
@@ -51,17 +51,17 @@ proc show_RCC_CFGR { } {
 
 proc show_RCC_CIR { } {
     if [ catch { set val [show_mmr32_reg RCC_CIR] } msg ] {
-	error $msg
+    error $msg
     }
 
 }
 
 proc show_RCC_APB2RSTR { } {
     if [ catch { set val [ show_mmr32_reg RCC_APB2RSTR] } msg ] {
-	error $msg
+    error $msg
     }
     for { set x 0 } { $x < 32 } { incr x } {
-	set bits($x) xxx
+    set bits($x) xxx
     }
     set bits(15) adc3
     set bits(14) usart1
@@ -84,7 +84,7 @@ proc show_RCC_APB2RSTR { } {
 
 proc show_RCC_APB1RSTR { } {
     if [ catch { set val [ show_mmr32_reg RCC_APB1RSTR] } msg ] {
-	error $msg
+    error $msg
     }
     set bits(31) xxx
     set bits(30) xxx
@@ -124,7 +124,7 @@ proc show_RCC_APB1RSTR { } {
 
 proc show_RCC_AHBENR   { } {
     if [ catch { set val [ show_mmr32_reg RCC_AHBENR  ] } msg ] {
-	error $msg
+    error $msg
     }
     set bits(31) xxx
     set bits(30) xxx
@@ -163,7 +163,7 @@ proc show_RCC_AHBENR   { } {
 
 proc show_RCC_APB2ENR  { } {
     if [ catch { set val [ show_mmr32_reg RCC_APB2ENR ] } msg ] {
-	error $msg
+    error $msg
     }
     set bits(31) xxx
     set bits(30) xxx
@@ -203,7 +203,7 @@ proc show_RCC_APB2ENR  { } {
 
 proc show_RCC_APB1ENR  { } {
     if [ catch { set val [ show_mmr32_reg RCC_APB1ENR ] } msg ] {
-	error $msg
+    error $msg
     }
     set bits(31) xxx
     set bits(30) xxx
@@ -242,10 +242,10 @@ proc show_RCC_APB1ENR  { } {
 
 proc show_RCC_BDCR     { } {
     if [ catch { set val [ show_mmr32_reg RCC_BDCR    ] } msg ] {
-	error $msg
+    error $msg
     }
     for { set x 0 } { $x < 32 } { incr x } {
-	set bits($x) xxx
+    set bits($x) xxx
     }
     set bits(0) lseon
     set bits(1) lserdy
@@ -259,10 +259,10 @@ proc show_RCC_BDCR     { } {
 
 proc show_RCC_CSR      { } {
     if [ catch { set val [ show_mmr32_reg RCC_CSR     ] } msg ] {
-	error $msg
+    error $msg
     }
     for { set x 0 } { $x < 32 } { incr x } {
-	set bits($x) xxx
+    set bits($x) xxx
     }
     set bits(0) lsion
     set bits(1) lsirdy

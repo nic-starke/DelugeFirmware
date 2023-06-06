@@ -3,17 +3,19 @@
  *
  * This file is part of The Synthstrom Audible Deluge Firmware.
  *
- * The Synthstrom Audible Deluge Firmware is free software: you can redistribute it and/or modify it under the
- * terms of the GNU General Public License as published by the Free Software Foundation,
- * either version 3 of the License, or (at your option) any later version.
+ * The Synthstrom Audible Deluge Firmware is free software: you can redistribute
+ * it and/or modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
  *
- * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <https://www.gnu.org/licenses/>.
-*/
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <https://www.gnu.org/licenses/>.
+ */
 
 #ifndef CONSEQUENCENOTEEXISTENCE_H_
 #define CONSEQUENCENOTEEXISTENCE_H_
@@ -25,20 +27,18 @@ class Note;
 
 class ConsequenceNoteExistence final : public Consequence {
 public:
-	ConsequenceNoteExistence(InstrumentClip* newClip, int newNoteRowId, Note* note, int newType);
-	int revert(int time, ModelStack* modelStack);
+  ConsequenceNoteExistence(InstrumentClip* newClip, int newNoteRowId, Note* note, int newType);
+  int revert(int time, ModelStack* modelStack);
 
-	InstrumentClip* clip;
-	int noteRowId;
-	int pos;
-	int length;
-	int8_t velocity;
-	int8_t probability;
-	uint8_t lift;
+  InstrumentClip* clip;
+  int             noteRowId;
+  int             pos;
+  int             length;
+  int8_t          velocity;
+  int8_t          probability;
+  uint8_t         lift;
 
-
-	uint8_t type;
-
+  uint8_t type;
 };
 
 #endif /* CONSEQUENCENOTEEXISTENCE_H_ */

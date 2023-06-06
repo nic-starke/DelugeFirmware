@@ -20,7 +20,7 @@ proc showconfig {label} {
 # in u-boot.
 proc configC100 {} {
     # xtal freq. 24MHz
-    dict set configC100 CFG_REFCLKFREQ	         24000000
+    dict set configC100 CFG_REFCLKFREQ           24000000
 
     # Amba Clk 165MHz
     dict set configC100 CONFIG_SYS_HZ_CLOCK      165000000
@@ -56,17 +56,17 @@ proc setupTelo {} {
 proc setupNOR {} {
     echo "Setting up NOR: 16MB, 16-bit wide bus, CS0"
     # this is taken from u-boot/boards/mindspeed/ooma-darwin/board.c:nor_hw_init()
-    set EX_CSEN_REG	    [regs EX_CSEN_REG ]
-    set EX_CS0_SEG_REG	    [regs EX_CS0_SEG_REG ]
-    set EX_CS0_CFG_REG	    [regs EX_CS0_CFG_REG ]
-    set EX_CS0_TMG1_REG	    [regs EX_CS0_TMG1_REG ]
-    set EX_CS0_TMG2_REG	    [regs EX_CS0_TMG2_REG ]
-    set EX_CS0_TMG3_REG	    [regs EX_CS0_TMG3_REG ]
+    set EX_CSEN_REG     [regs EX_CSEN_REG ]
+    set EX_CS0_SEG_REG      [regs EX_CS0_SEG_REG ]
+    set EX_CS0_CFG_REG      [regs EX_CS0_CFG_REG ]
+    set EX_CS0_TMG1_REG     [regs EX_CS0_TMG1_REG ]
+    set EX_CS0_TMG2_REG     [regs EX_CS0_TMG2_REG ]
+    set EX_CS0_TMG3_REG     [regs EX_CS0_TMG3_REG ]
     set EX_CLOCK_DIV_REG    [regs EX_CLOCK_DIV_REG ]
-    set EX_MFSM_REG	    [regs EX_MFSM_REG ]
-    set EX_CSFSM_REG	    [regs EX_CSFSM_REG ]
-    set EX_WRFSM_REG	    [regs EX_WRFSM_REG ]
-    set EX_RDFSM_REG	    [regs EX_RDFSM_REG ]
+    set EX_MFSM_REG     [regs EX_MFSM_REG ]
+    set EX_CSFSM_REG        [regs EX_CSFSM_REG ]
+    set EX_WRFSM_REG        [regs EX_WRFSM_REG ]
+    set EX_RDFSM_REG        [regs EX_RDFSM_REG ]
 
     # enable Expansion Bus Clock + CS0 (NOR)
     mww $EX_CSEN_REG 0x3
@@ -85,8 +85,8 @@ proc setupNOR {} {
 
 proc bootNOR {} {
     set EXP_CS0_BASEADDR       [regs EXP_CS0_BASEADDR]
-    set BLOCK_RESET_REG	       [regs BLOCK_RESET_REG]
-    set DDR_RST		       [regs DDR_RST]
+    set BLOCK_RESET_REG        [regs BLOCK_RESET_REG]
+    set DDR_RST            [regs DDR_RST]
 
     # put DDR controller in reset (so that it comes reset in u-boot)
     mmw $BLOCK_RESET_REG 0x0 $DDR_RST
@@ -108,8 +108,8 @@ proc setupGPIO {} {
     #GPIO17 reset for DECT module.
     #GPIO29 CS_n for NAND
 
-    set GPIO_OUTPUT_REG		    [regs GPIO_OUTPUT_REG]
-    set GPIO_OE_REG		    [regs GPIO_OE_REG]
+    set GPIO_OUTPUT_REG         [regs GPIO_OUTPUT_REG]
+    set GPIO_OE_REG         [regs GPIO_OE_REG]
 
     # set GPIO29=GPIO17=1, GPIO5=0
     mww $GPIO_OUTPUT_REG [expr {1<<29 | 1<<17}]
@@ -119,14 +119,14 @@ proc setupGPIO {} {
 
 proc highGPIO5 {} {
     echo "GPIO5 high"
-    set GPIO_OUTPUT_REG		    [regs GPIO_OUTPUT_REG]
+    set GPIO_OUTPUT_REG         [regs GPIO_OUTPUT_REG]
     # set GPIO5=1
     mmw $GPIO_OUTPUT_REG [expr {1 << 5}] 0x0
 }
 
 proc lowGPIO5 {} {
     echo "GPIO5 low"
-    set GPIO_OUTPUT_REG		    [regs GPIO_OUTPUT_REG]
+    set GPIO_OUTPUT_REG         [regs GPIO_OUTPUT_REG]
     # set GPIO5=0
     mmw $GPIO_OUTPUT_REG 0x0 [expr {1 << 5}]
 }
@@ -158,7 +158,7 @@ proc boardID {id} {
 # converted from u-boot/boards/mindspeed/ooma-darwin/board.c:ooma_board_detect()
 # figure out what board revision this is, uses BOOTSTRAP register to read stuffed resistors
 proc ooma_board_detect {} {
-    set GPIO_BOOTSTRAP_REG	[regs GPIO_BOOTSTRAP_REG]
+    set GPIO_BOOTSTRAP_REG  [regs GPIO_BOOTSTRAP_REG]
 
     # read the current value of the BOOTSTRAP pins
     set tmp [mrw $GPIO_BOOTSTRAP_REG]
@@ -232,8 +232,8 @@ proc configureDDR2regs_256M {} {
     echo -n "Waiting for DDR2 controller to init..."
     set tmp [mrw [expr {$DENALI_CTL_08_DATA + 4}]]
     while { [expr {$tmp & 0x040000}] == 0 } {
-	sleep 1
-	set tmp [mrw [expr {$DENALI_CTL_08_DATA + 4}]]
+    sleep 1
+    set tmp [mrw [expr {$DENALI_CTL_08_DATA + 4}]]
     }
     echo "done."
 
@@ -300,8 +300,8 @@ proc configureDDR2regs_128M {} {
     echo -n "Waiting for DDR2 controller to init..."
     set tmp [mrw [expr {$DENALI_CTL_08_DATA + 4}]]
     while { [expr {$tmp & 0x040000}] == 0 } {
-	sleep 1
-	set tmp [mrw [expr {$DENALI_CTL_08_DATA + 4}]]
+    sleep 1
+    set tmp [mrw [expr {$DENALI_CTL_08_DATA + 4}]]
     }
     # This is not necessary
     #mw64bit $DENALI_CTL_11_DATA [expr {($DENALI_CTL_11_VAL  & ~0x00007F0000000000) | ($wr_dqs_shift << 40)} ]
@@ -319,18 +319,18 @@ proc setupUART0 {} {
     set GPIO_IOCTRL_REG    [regs GPIO_IOCTRL_REG]
     set GPIO_IOCTRL_VAL    [regs GPIO_IOCTRL_VAL]
     set GPIO_IOCTRL_UART0  [regs GPIO_IOCTRL_UART0]
-    set UART0_LCR	            [regs UART0_LCR]
-    set LCR_DLAB		    [regs LCR_DLAB]
-    set UART0_DLL		    [regs UART0_DLL]
-    set UART0_DLH		    [regs UART0_DLH]
-    set UART0_IIR		    [regs UART0_IIR]
-    set UART0_IER		    [regs UART0_IER]
-    set LCR_ONE_STOP		    [regs LCR_ONE_STOP]
-    set LCR_CHAR_LEN_8		    [regs LCR_CHAR_LEN_8]
-    set FCR_XMITRES		    [regs FCR_XMITRES]
-    set FCR_RCVRRES		    [regs FCR_RCVRRES]
-    set FCR_FIFOEN		    [regs FCR_FIFOEN]
-    set IER_UUE			    [regs IER_UUE]
+    set UART0_LCR               [regs UART0_LCR]
+    set LCR_DLAB            [regs LCR_DLAB]
+    set UART0_DLL           [regs UART0_DLL]
+    set UART0_DLH           [regs UART0_DLH]
+    set UART0_IIR           [regs UART0_IIR]
+    set UART0_IER           [regs UART0_IER]
+    set LCR_ONE_STOP            [regs LCR_ONE_STOP]
+    set LCR_CHAR_LEN_8          [regs LCR_CHAR_LEN_8]
+    set FCR_XMITRES         [regs FCR_XMITRES]
+    set FCR_RCVRRES         [regs FCR_RCVRRES]
+    set FCR_FIFOEN          [regs FCR_FIFOEN]
+    set IER_UUE             [regs IER_UUE]
 
     # unlock writing to IOCTRL register
     mww $GPIO_LOCK_REG $GPIO_IOCTRL_VAL
@@ -356,9 +356,9 @@ proc setupUART0 {} {
 
 proc putcUART0 {char} {
 
-    set UART0_LSR	    [regs UART0_LSR]
-    set UART0_THR	    [regs UART0_THR]
-    set LSR_TEMT	    [regs LSR_TEMT]
+    set UART0_LSR       [regs UART0_LSR]
+    set UART0_THR       [regs UART0_THR]
+    set LSR_TEMT        [regs LSR_TEMT]
 
     # convert the 'char' to digit
     set tmp [ scan $char %c ]
@@ -372,14 +372,14 @@ proc putsUART0 {str} {
     set index 0
     set len [string length $str]
     while { $index < $len } {
-	putcUART0 [string index $str $index]
-	set index [expr {$index + 1}]
+    putcUART0 [string index $str $index]
+    set index [expr {$index + 1}]
     }
 }
 
 
 proc trainDDR2 {} {
-    set ARAM_BASEADDR	[regs ARAM_BASEADDR]
+    set ARAM_BASEADDR   [regs ARAM_BASEADDR]
 
     # you must have run 'reset init' or u-boot
     # load the training code to ARAM

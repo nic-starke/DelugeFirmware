@@ -1,5 +1,5 @@
 <device xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="1.1" xsi:noNamespaceSchemaLocation="CMSIS-SVD.xsd">
-  
+
   <vendor>Renesas</vendor>
   <name>RZ/A1H</name>
   <addressUnitBits>8</addressUnitBits>

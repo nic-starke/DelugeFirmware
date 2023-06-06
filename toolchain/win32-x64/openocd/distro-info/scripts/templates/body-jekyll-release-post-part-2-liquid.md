@@ -1,4 +1,3 @@
-
 ## Deprecation notices
 
 ### 32-bit support

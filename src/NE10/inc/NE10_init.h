@@ -14,15 +14,15 @@
  *      derived from this software without specific prior written permission.
  *
  *  THIS SOFTWARE IS PROVIDED BY ARM LIMITED AND CONTRIBUTORS "AS IS" AND
- *  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- *  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- *  DISCLAIMED. IN NO EVENT SHALL ARM LIMITED AND CONTRIBUTORS BE LIABLE FOR ANY
- *  DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- *  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- *  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL ARM LIMITED AND CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "NE10.h"
@@ -34,21 +34,23 @@
 extern "C" {
 #endif
 
-    /*!
-        This routine returns NE10_OK if the running platform supports NEON, otherwise it returns NE10_ERR
-     */
-    extern ne10_result_t ne10_HasNEON(void);
+/*!
+    This routine returns NE10_OK if the running platform supports NEON,
+   otherwise it returns NE10_ERR
+ */
+extern ne10_result_t ne10_HasNEON(void);
 
-    /*!
-        This routine initializes all the function pointers.
-     */
-    extern ne10_result_t ne10_init(void);
+/*!
+    This routine initializes all the function pointers.
+ */
+extern ne10_result_t ne10_init(void);
 
-    /*!
-        This routine initializes all the math function pointers defined in "NE10_math.h" with pointers to ARM NEON or ARM VFP implementations.
-     */
-    extern ne10_result_t ne10_init_math (ne10_int32_t is_NEON_available);
-    extern ne10_result_t ne10_init_dsp (ne10_int32_t is_NEON_available);
+/*!
+    This routine initializes all the math function pointers defined in
+   "NE10_math.h" with pointers to ARM NEON or ARM VFP implementations.
+ */
+extern ne10_result_t ne10_init_math(ne10_int32_t is_NEON_available);
+extern ne10_result_t ne10_init_dsp(ne10_int32_t is_NEON_available);
 
 #ifdef __cplusplus
 }

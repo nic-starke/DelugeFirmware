@@ -186,9 +186,9 @@ Finished:
 /* ========================================================================= */
 /* Setup domain control register - Enable all domains to client mode         */
 /* ========================================================================= */
-	MRC  p15, 0, r0, c3, c0, 0     /* Read Domain Access Control Register    */
-	LDR  r0, =0x55555555    /* Initialize every domain entry to b01 (client) */
-	MCR  p15, 0, r0, c3, c0, 0       /* Write Domain Access Control Register */
+    MRC  p15, 0, r0, c3, c0, 0     /* Read Domain Access Control Register    */
+    LDR  r0, =0x55555555    /* Initialize every domain entry to b01 (client) */
+    MCR  p15, 0, r0, c3, c0, 0       /* Write Domain Access Control Register */
 
 /* ========================================================================= */
 /* Enable access to NEON/VFP by enabling access to Coprocessors 10 and 11.   */
@@ -223,7 +223,7 @@ Finished:
 /* ========================================================================= */
     LDR  r12,=initsct                 /* Use register for possible long jump */
     BLX  r12                                             /* Stack Initialize */
-    
+
 /* ========================================================================= */
 /* Branch to C library entry point                                           */
 /* ========================================================================= */
@@ -248,4 +248,3 @@ abort_handler:
 reserved_handler:
     B    reserved_handler
 .end
-

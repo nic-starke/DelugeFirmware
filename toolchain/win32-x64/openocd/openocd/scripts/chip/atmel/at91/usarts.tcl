@@ -43,25 +43,25 @@ proc show_mmr_USx_MR_helper { NAME ADDR VAL } {
 
     set x [show_normalize_bitfield $VAL 3 0]
     if { $x == 0 } {
-	echo "\tNormal operation"
+    echo "\tNormal operation"
     } else {
-	echo [format "\tNon Normal operation mode: 0x%02x" $x]
+    echo [format "\tNon Normal operation mode: 0x%02x" $x]
     }
 
     set x [show_normalize_bitfield $VAL 11 9]
     set s "unknown"
     switch -exact $x {
-	0 { set s "Even" }
-	1 { set s "Odd" }
-	2 { set s "Force=0" }
-	3 { set s "Force=1" }
-	* {
-	    set $x [expr {$x & 6}]
-	    switch -exact $x {
-		4 { set s "None" }
-		6 { set s "Multidrop Mode" }
-	    }
-	}
+    0 { set s "Even" }
+    1 { set s "Odd" }
+    2 { set s "Force=0" }
+    3 { set s "Force=1" }
+    * {
+        set $x [expr {$x & 6}]
+        switch -exact $x {
+        4 { set s "None" }
+        6 { set s "Multidrop Mode" }
+        }
+    }
     }
     echo [format "\tParity: %s " $s]
 
@@ -70,10 +70,10 @@ proc show_mmr_USx_MR_helper { NAME ADDR VAL } {
 
     set x [show_normalize_bitfield $VAL 13 12]
     switch -exact $x {
-	0 { echo "\tStop bits: 1" }
-	1 { echo "\tStop bits: 1.5" }
-	2 { echo "\tStop bits: 2" }
-	3 { echo "\tStop bits: Illegal/Reserved" }
+    0 { echo "\tStop bits: 1" }
+    1 { echo "\tStop bits: 1.5" }
+    2 { echo "\tStop bits: 2" }
+    3 { echo "\tStop bits: Illegal/Reserved" }
     }
 }
 
@@ -84,30 +84,30 @@ foreach WHO { US0 US1 US2 US3 US4 US5 US6 US7 US8 US9 } {
 
     # Only if it exists on the chip
     if [ info exists $n ] {
-	# Hence: $n - is like AT91C_BASE_USx
-	# For every sub-register
-	foreach REG {CR MR IER IDR IMR CSR RHR THR BRGR RTOR TTGR FIDI NER IF}	{
-	    # vn = variable name
-	    set vn [set WHO]_[set REG]
-	    # vn = USx_IER
-	    # vv = variable value
-	    set vv [expr "$$n + [set USx_[set REG]]"]
-	    # And VV is the address in memory of that register
+    # Hence: $n - is like AT91C_BASE_USx
+    # For every sub-register
+    foreach REG {CR MR IER IDR IMR CSR RHR THR BRGR RTOR TTGR FIDI NER IF}  {
+        # vn = variable name
+        set vn [set WHO]_[set REG]
+        # vn = USx_IER
+        # vv = variable value
+        set vv [expr "$$n + [set USx_[set REG]]"]
+        # And VV is the address in memory of that register
 
 
-	    # make that VN a GLOBAL so others can find it
-	    global $vn
-	    set $vn $vv
+        # make that VN a GLOBAL so others can find it
+        global $vn
+        set $vn $vv
 
-	    # Create a command for this specific register.
-	    proc show_$vn { } "show_mmr32_reg $vn"
+        # Create a command for this specific register.
+        proc show_$vn { } "show_mmr32_reg $vn"
 
-	    # Add this command to the Device(as a whole) command
-	    set str "$str\nshow_$vn"
-	}
-	# Now - create the DEVICE(as a whole) command
-	set fn show_$WHO
-	proc $fn { } $str
+        # Add this command to the Device(as a whole) command
+        set str "$str\nshow_$vn"
+    }
+    # Now - create the DEVICE(as a whole) command
+    set fn show_$WHO
+    proc $fn { } $str
     }
 }
 

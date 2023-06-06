@@ -7,14 +7,14 @@ do the same thing across all the targets.
 Rules to follow when writing scripts:
 
 1. The configuration script should be defined such as , for example, the following sequences are working:
-	reset
-	flash info <bank>
+    reset
+    flash info <bank>
 and
-	reset
-	flash erase_address <start> <len>
+    reset
+    flash erase_address <start> <len>
 and
-	reset init
-	load
+    reset init
+    load
 
 In most cases this can be accomplished by specifying the default startup mode as reset_init (target command
 in the configuration file).

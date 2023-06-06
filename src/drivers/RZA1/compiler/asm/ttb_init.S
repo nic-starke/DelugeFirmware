@@ -33,16 +33,16 @@
 *******************************************************************************/
 
 /* ---- Parameter setting to level1 descriptor (bits 19:0) ---- */
-/* setting for Strongly-ordered memory     
+/* setting for Strongly-ordered memory
    B-00000000000000000000110111100010 */
     .equ TTB_PARA_STRGLY , 0x0DE2
 
-/* setting for Outer and inner not cache normal memory 
+/* setting for Outer and inner not cache normal memory
    B-00000000000000000001110111100010 */
     .equ TTB_PARA_NORMAL_NOT_CACHE , 0x1DE2
 
-/* setting for Outer and inner write back, write allocate normal memory 
-   (Cacheable) 
+/* setting for Outer and inner write back, write allocate normal memory
+   (Cacheable)
    B-00000000000000000001110111101110 */
     .equ TTB_PARA_NORMAL_CACHE , 0x1DEE
 
@@ -61,9 +61,9 @@
     .equ M_SIZE_IO_2 , 2550    /* [Area11] I/O area 2 */
 
 /*******************************************************************************
-* This code provides basic global enable for Cortex-A9 cache. 
-* It also enables branch prediction 
-* This code must be run from a privileged mode 
+* This code provides basic global enable for Cortex-A9 cache.
+* It also enables branch prediction
+* This code must be run from a privileged mode
 /******************************************************************************/
     .global    init_TTB
     .func init_TTB
@@ -81,41 +81,41 @@ init_TTB:
 
     /* write the address of our page table base to TTB register 0 */
     /* start of table from .ld file  */
-    LDR  r0,=ttb_mmu1_base          
-    
+    LDR  r0,=ttb_mmu1_base
+
     /* RGN=b01  (outer cacheable write-back cached, write allocate) */
-    MOV  r1, #0x08                    
-    
+    MOV  r1, #0x08
+
     /* S=0      (translation table walk to non-shared memory) */
-    /* IRGN=b01 (inner cacheability for the translation table walk is 
+    /* IRGN=b01 (inner cacheability for the translation table walk is
        Write-back Write-allocate) */
-    ORR  r1,r1,#0x40               
+    ORR  r1,r1,#0x40
     ORR  r0,r0,r1
-    
+
     /* TTBR0 */
-    MCR  p15, 0, r0, c2, c0, 0       
+    MCR  p15, 0, r0, c2, c0, 0
 
 /*******************************************************************************
-* PAGE TABLE generation 
-* Generate the page tables 
-* Build a flat translation table for the whole address space. 
-* ie: Create 4096 1MB sections from 0x000xxxxx to 0xFFFxxxxx 
+* PAGE TABLE generation
+* Generate the page tables
+* Build a flat translation table for the whole address space.
+* ie: Create 4096 1MB sections from 0x000xxxxx to 0xFFFxxxxx
 *  31           20|19 18|17|16| 15|14 12|11 10|9|8    5|4 |3 2|1 0|
 * |base address   | 0  0|nG| S|AP2|TEX  |AP   |P|Domain|XN|CB |1 0|
 *
-* Bits[31:20]   - Top 12 bits of VA is pointer into table 
+* Bits[31:20]   - Top 12 bits of VA is pointer into table
 * nG[17]=0      - Non global, enables matching against ASID in the TLB when set.
 * S[16]=0       - Indicates normal memory is shared when set.
-* AP2[15]=0  
+* AP2[15]=0
 * TEX[14:12]=000
-* AP[11:10]=11  - Configure for full read/write access in all modes 
+* AP[11:10]=11  - Configure for full read/write access in all modes
 * IMPP[9]=0     - Ignored
 * Domain[5:8]=1111   - Set all pages to use domain 15
 * XN[4]=0       - Execute never disabled
-* CB[3:2]= 00   - Set attributes to Strongly-ordered memory. 
-*                 (except for the descriptor where code segment is based, 
-*                  see below) 
-* Bits[1:0]=10  - Indicate entry is a 1MB section 
+* CB[3:2]= 00   - Set attributes to Strongly-ordered memory.
+*                 (except for the descriptor where code segment is based,
+*                  see below)
+* Bits[1:0]=10  - Indicate entry is a 1MB section
 *******************************************************************************/
     LDR  r0,=ttb_mmu1_base          /* start of table from .ld file */
     LDR  r1,=0xFFF
@@ -158,77 +158,77 @@ set_mem_accsess:
     BEQ  setting_area1
     CMP  r2, #0
     BEQ  setting_area0
-setting_area11:                        
+setting_area11:
     LDR  r3, =M_SIZE_IO_2
-    LDR  r4, =TTB_PARA_STRGLY       
+    LDR  r4, =TTB_PARA_STRGLY
     BAL  init_counter
-setting_area10:                     
+setting_area10:
     LDR  r3, =M_SIZE_RAM_M
-    LDR  r4, =TTB_PARA_NORMAL_NOT_CACHE  
+    LDR  r4, =TTB_PARA_NORMAL_NOT_CACHE
     BAL  init_counter
-setting_area9:                       
+setting_area9:
     LDR  r3, =M_SIZE_SPI_M
-    LDR  r4, =TTB_PARA_NORMAL_NOT_CACHE 
+    LDR  r4, =TTB_PARA_NORMAL_NOT_CACHE
     BAL  init_counter
-setting_area8:                       
+setting_area8:
     LDR  r3, =M_SIZE_CS45_M
-    LDR  r4, =TTB_PARA_STRGLY        
-    BAL  init_counter    
-setting_area7:                       
+    LDR  r4, =TTB_PARA_STRGLY
+    BAL  init_counter
+setting_area7:
     LDR  r3, =M_SIZE_SDRAM_M
-    LDR  r4, =TTB_PARA_NORMAL_NOT_CACHE 
+    LDR  r4, =TTB_PARA_NORMAL_NOT_CACHE
     BAL  init_counter
-setting_area6:      
+setting_area6:
     LDR  r3, =M_SIZE_NOR_M
-    LDR  r4, =TTB_PARA_NORMAL_NOT_CACHE 
+    LDR  r4, =TTB_PARA_NORMAL_NOT_CACHE
     BAL  init_counter
-setting_area5:     
+setting_area5:
     LDR  r3, =M_SIZE_IO_1
-    LDR  r4, =TTB_PARA_STRGLY  
+    LDR  r4, =TTB_PARA_STRGLY
     BAL  init_counter
-setting_area4:                 
+setting_area4:
     LDR  r3, =M_SIZE_RAM
-    LDR  r4, =TTB_PARA_NORMAL_CACHE 
+    LDR  r4, =TTB_PARA_NORMAL_CACHE
     BAL  init_counter
-setting_area3:                      
+setting_area3:
     LDR  r3, =M_SIZE_SPI
-    LDR  r4, =TTB_PARA_NORMAL_CACHE 
+    LDR  r4, =TTB_PARA_NORMAL_CACHE
     BAL  init_counter
-setting_area2:                      
+setting_area2:
     LDR  r3, =M_SIZE_CS45
-    LDR  r4, =TTB_PARA_STRGLY       
+    LDR  r4, =TTB_PARA_STRGLY
     BAL  init_counter
-setting_area1:                      
+setting_area1:
     LDR  r3, =M_SIZE_SDRAM
-    LDR  r4, =TTB_PARA_NORMAL_CACHE 
-    BAL  init_counter    
-setting_area0:                      
+    LDR  r4, =TTB_PARA_NORMAL_CACHE
+    BAL  init_counter
+setting_area0:
     LDR  r3, =M_SIZE_NOR
-    LDR  r4, =TTB_PARA_NORMAL_CACHE 
+    LDR  r4, =TTB_PARA_NORMAL_CACHE
     BAL  init_counter
 init_counter:
-    SUBS r3, r3, #1                 
+    SUBS r3, r3, #1
 write_ttb:
-    
+
     /* R5 now contains full level1 descriptor to write */
-    ORR  r5, r4, r1, LSL#20        
-    
-    /* Str table entry at TTB base + loopcount*4 */    
+    ORR  r5, r4, r1, LSL#20
+
+    /* Str table entry at TTB base + loopcount*4 */
     STR  r5, [r0, r1, LSL#2]
 
     /* Decrement loop counter */
-    SUB  r1, r1, #1                 
-    
+    SUB  r1, r1, #1
+
     /* Decrement loop counter by area */
-    SUBS r3, r3, #1                 
-    
+    SUBS r3, r3, #1
+
     BPL  write_ttb
-    
-    /* target area counter */   
-    SUBS r2, r2, #1                 
-    
+
+    /* target area counter */
+    SUBS r2, r2, #1
+
     /* To the next area */
-    BPL  set_mem_accsess            
+    BPL  set_mem_accsess
 
     BX   lr
     .endfunc

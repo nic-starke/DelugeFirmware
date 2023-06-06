@@ -3,16 +3,18 @@
  *
  * This file is part of The Synthstrom Audible Deluge Firmware.
  *
- * The Synthstrom Audible Deluge Firmware is free software: you can redistribute it and/or modify it under the
- * terms of the GNU General Public License as published by the Free Software Foundation,
- * either version 3 of the License, or (at your option) any later version.
+ * The Synthstrom Audible Deluge Firmware is free software: you can redistribute
+ * it and/or modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
  *
- * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 #ifndef DRIVERS_ALL_CPUS_OLED_LOW_LEVEL_ALL_CPUS_OLED_LOW_LEVEL_ALL_CPUS_H_
@@ -25,16 +27,16 @@ void oledDMAInit();
 void enqueueSPITransfer(int whichOled, uint8_t const* image);
 void oledTransferComplete(uint32_t int_sense);
 
-extern volatile bool_t spiTransferQueueCurrentlySending;
+extern volatile bool_t  spiTransferQueueCurrentlySending;
 extern volatile uint8_t spiTransferQueueReadPos;
-extern uint8_t spiTransferQueueWritePos;
-
+extern uint8_t          spiTransferQueueWritePos;
 
 struct SpiTransferQueueItem {
-	uint8_t destinationId;
-	uint8_t const* dataAddress;
+  uint8_t        destinationId;
+  uint8_t const* dataAddress;
 };
 
 extern struct SpiTransferQueueItem spiTransferQueue[SPI_TRANSFER_QUEUE_SIZE];
 
-#endif /* DRIVERS_ALL_CPUS_OLED_LOW_LEVEL_ALL_CPUS_OLED_LOW_LEVEL_ALL_CPUS_H_ */
+#endif /* DRIVERS_ALL_CPUS_OLED_LOW_LEVEL_ALL_CPUS_OLED_LOW_LEVEL_ALL_CPUS_H_ \
+        */

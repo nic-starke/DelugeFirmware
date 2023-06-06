@@ -847,7 +847,7 @@ GNU Autoconf NEWS - User visible changes.
    the call site, but since most users did not add dnl, this generally
    results in fewer empty lines in configure.
 
-
+
 * Major changes in Autoconf 2.63 (2008-09-09) [stable]
   Released by Eric Blake, based on git versions 2.62.*.
 
@@ -913,7 +913,7 @@ GNU Autoconf NEWS - User visible changes.
 ** Config header templates `#undef UNDEFINED /* comment */' do not lead to
    nested comments any more; regression introduced in 2.62.
 
-
+
 * Major changes in Autoconf 2.62 (2008-04-05) [stable]
   Released by Eric Blake, based on git versions 2.61a.*.
 
@@ -1049,7 +1049,7 @@ GNU Autoconf NEWS - User visible changes.
    Autoconf, you can insert the following snippet after AC_INIT but
    before any other macro expansions, to enforce the new semantics:
      m4_pushdef([m4_append], [m4_define([$1],
-	   m4_ifdef([$1], [m4_defn([$1])[$3]])[$2])])
+       m4_ifdef([$1], [m4_defn([$1])[$3]])[$2])])
    Additionally, m4_append_uniq now takes optional parameters that can
    be used to take action depending on whether anything was appended,
    and warns if a non-empty separator occurs within the string being
@@ -1095,7 +1095,7 @@ GNU Autoconf NEWS - User visible changes.
    when running `configure'.  We have no current plans to remove these
    macros.
 
-
+
 * Major changes in Autoconf 2.61a (2006-12-11)
 
 ** AC_FUNC_FSEEKO was broken in 2.61; it didn't make fseeko and ftello visible
@@ -1129,14 +1129,14 @@ GNU Autoconf NEWS - User visible changes.
    not be a problem, since Autoconf-generated scripts in practice
    invariably find a more-modern shell these days.
 
-
+
 * Major changes in Autoconf 2.61 (2006-11-17)
 
 ** New macros AC_C_FLEXIBLE_ARRAY_MEMBER, AC_C_VARARRAYS.
 
 ** AC_ARG_ENABLE and AC_ARG_WITH now allow '.' in feature and package names.
 
-
+
 * Major changes in Autoconf 2.60b (2006-10-22)
 
 ** BIN_SH
@@ -1187,7 +1187,7 @@ GNU Autoconf NEWS - User visible changes.
    that long long types be at least 64 bits wide, as C99 and tradition
    requires.  Formerly, they accepted implementations of any width.
 
-
+
 * Major changes in Autoconf 2.60
 
   Released 2006-06-23, by Ralf Wildenhues.
@@ -1431,14 +1431,14 @@ GNU Autoconf NEWS - User visible changes.
 ** AC_PROG_SED
   New macro that tests for a sed program that truncates as few characters
   as possible.
-
+
 * Major changes in Autoconf 2.59
 
   Released 2003-11-04, by Akim Demaille
 
 ** ac_abs_builddir etc.
   Absolute file names were actually relative in 2.58.
-
+
 * Major changes in Autoconf 2.58
 
   Released 2003-11-04, by Akim Demaille
@@ -1513,7 +1513,7 @@ GNU Autoconf NEWS - User visible changes.
   failures are logged while the test is run.
 
   In addition, expected failures can be marked as such.
-
+
 * Major changes in Autoconf 2.57
 
   Released 2002-12-03 by Paul Eggert.
@@ -1522,21 +1522,21 @@ Bug fixes for problems with AIX linker, with freestanding C compilers,
 with GNU M4 limitations, and with obsolete copies of GNU documents.
 
 The Free Documentation License has been upgraded from 1.1 to 1.2.
-
+
 * Major changes in Autoconf 2.56
 
   Released 2002-11-15 by Akim Demaille.
 
 One packaging problem fixed (config/install-sh was not executable).
-
+
 * Major changes in Autoconf 2.55
 
   Released 2002-11-14 by Akim Demaille.
 
 Release tips:
 
-	   Have your configure.ac checked by autoscan ("autoscan").
-	     Try the warning options ("autoreconf -fv -Wall").
+       Have your configure.ac checked by autoscan ("autoscan").
+         Try the warning options ("autoreconf -fv -Wall").
 
 ** Documentation
 
@@ -1599,8 +1599,8 @@ Release tips:
   avoid useless backslashes-- because Libtool 1.4.3 contains a
 
   AC_DEFINE([error_t], [int],
-	    [Define to a type to use for \`error_t' if it is not
-	     otherwise available.])
+        [Define to a type to use for \`error_t' if it is not
+         otherwise available.])
 
   We have to quote the single quotes and backslashes with \.  The old
   compatibility scheme saw that ` was backslashed, and therefore did
@@ -1661,7 +1661,7 @@ Release tips:
   to be escaped.  This scheme is fragile, and will be removed; the
   only risk is uglified messages.  Please, run `autoreconf -f -Wall'
   to find occurrences that will be affected.
-
+
 * Major changes in Autoconf 2.54
 
   Released 2002-09-13 by Akim Demaille.
@@ -1690,9 +1690,9 @@ Release tips:
   Now handles all the gory details about LIBOBJS and LTLIBOBJS.
   Please, remove lines such as
 
-	# This is necessary so that .o files in LIBOBJS are also
-	# built via the ANSI2KNR-filtering rules.
-	LIBOBJS=`echo $LIBOBJS|sed 's/\.o /\$U.o /g;s/\.o$/\$U.o/'`
+    # This is necessary so that .o files in LIBOBJS are also
+    # built via the ANSI2KNR-filtering rules.
+    LIBOBJS=`echo $LIBOBJS|sed 's/\.o /\$U.o /g;s/\.o$/\$U.o/'`
 
   and read the `AC_LIBOBJ vs LIBOBJS' section.  Do not define U in
   your Makefiles either.
@@ -1758,7 +1758,7 @@ Release tips:
 - config.log
   Now contains the list of output variables and files (AC_SUBST,
   AC_SUBST_FILES).
-
+
 * Major changes in Autoconf 2.53
 
   Released 2002-03-08 by Akim Demaille.
@@ -1881,7 +1881,7 @@ Release tips:
 
 - AC_FUNC_STRNLEN
   New.
-
+
 * Major changes in Autoconf 2.52
 
   Released 2001-07-18 by Akim Demaille.
@@ -1942,12 +1942,12 @@ Release tips:
   a main-like routine is required/possible when linking C/C++ with
   Fortran.  Users of e.g. AC_F77_WRAPPERS should be aware of these.
 - AC_FUNC_GETPGRG behaves better when cross-compiling.
-
+
 * Major changes in Autoconf 2.51
 There was no release of Autoconf 2.51 since some packagers had used
 this version number without permission to ship intermediary versions
 of 2.50.  The version was skipped to avoid confusion.
-
+
 * Major changes in Autoconf 2.50
 
   Released 2001-05-21 by Akim Demaille.
@@ -2099,14 +2099,14 @@ test cases in this new framework.
   They now obey sh: you should no longer use shell variables as
   argument.  Instead of
 
-	test "$package_foo_enabled" = yes && $my_subdirs="$my_subdirs foo"
-	AC_CONFIG_SUBDIRS($my_subdirs)
+    test "$package_foo_enabled" = yes && $my_subdirs="$my_subdirs foo"
+    AC_CONFIG_SUBDIRS($my_subdirs)
 
   write
 
-	if test "$package_foo_enabled" = yes; then
-	  AC_CONFIG_SUBDIRS(foo)
-	fi
+    if test "$package_foo_enabled" = yes; then
+      AC_CONFIG_SUBDIRS(foo)
+    fi
 
 - AC_HELP_STRING
   To format an Autoconf macro's help string so that it looks pretty
@@ -2180,10 +2180,10 @@ test cases in this new framework.
 
 ** C++ compatibility
   Every macro has been revisited in order to support at best CC=c++.
-
+
 Major changes in Autoconf 2.14:
   There was no release of GNU Autoconf 2.14.
-
+
 Major changes in Autoconf 2.13:
 
   Released 1999-05-01 by Ben Elliston.
@@ -2216,7 +2216,7 @@ Major changes in Autoconf 2.13:
   applicable).
 * Support for Fortran 77. See the Texinfo documentation for details.
 * Bug fixes and workarounds for quirky bugs in vendor utilities.
-
+
 Major changes in Autoconf 2.12:
 
   Released 1996-11-26 by David J. MacKenzie
@@ -2229,7 +2229,7 @@ Major changes in Autoconf 2.12:
 * AC_LINK_FILES and AC_CONFIG_SUBDIRS may be called multiple times.
 * New macro AC_OUTPUT_COMMANDS adds more commands to run in config.status.
 * Bug fixes.
-
+
 Major changes in Autoconf 2.11:
 
   Released November 18th, 1996, by David J. MacKenzie
@@ -2244,7 +2244,7 @@ Major changes in Autoconf 2.11:
 * Another workaround has been added for seds with small command length limits.
 * config.sub and config.guess recognize more system types.
 * Bug fixes.
-
+
 Major changes in Autoconf 2.10:
 
   Released May 7th, 1996, by Roland McGrath
@@ -2252,31 +2252,31 @@ Major changes in Autoconf 2.10:
 * Bug fixes.
 * The cache variable names used by `AC_CHECK_LIB(LIB, FUNC, ...)' has
   changed: now $ac_cv_lib_LIB_FUNC, previously $ac_cv_lib_LIB.
-
+
 Major changes in Autoconf 2.9:
 
   Released March 16th, 1996, by Roland McGrath
 
 * Bug fixes.
-
+
 Major changes in Autoconf 2.8:
 
   Released March 8th, 1996, by Roland McGrath
 
 * Bug fixes.
-
+
 Major changes in Autoconf 2.7:
 
   Released November 22nd, 1995, by David J. MacKenzie
 
 * Bug fixes.
-
+
 Major changes in Autoconf 2.6:
 
   Released November 20th, 1995, by David J. MacKenzie
 
 * Bug fixes.
-
+
 Major changes in Autoconf 2.5:
 
   Released November 17th, 1995, by Roland McGrath
@@ -2290,13 +2290,13 @@ Major changes in Autoconf 2.5:
 * AC_CHECK_PROG, AC_PATH_PROG, AC_CHECK_PROGS, AC_PATH_PROGS, and
   AC_CHECK_TOOL can search a path other than $PATH.
 * AC_CHECK_SIZEOF takes an optional size to use when cross-compiling.
-
+
 Major changes in Autoconf 2.4:
 
   Released June 14th, 1995, by David J. MacKenzie
 
 * Fix a few bugs found by Emacs testers.
-
+
 Major changes in Autoconf 2.3:
 
   Released March 27th, 1995, by David J. MacKenzie
@@ -2304,7 +2304,7 @@ Major changes in Autoconf 2.3:
 * Fix the cleanup trap in several ways.
 * Handle C compilers that are picky about option placement.
 * ifnames gets the version number from the right directory.
-
+
 Major changes in Autoconf 2.2:
 
   Released March 8th, 1995, by David J. MacKenzie
@@ -2315,7 +2315,7 @@ Major changes in Autoconf 2.2:
 * New macros: AC_FUNC_GETPGRP, AC_CHECK_TOOL.
 * Lots of bug fixes.
 * Many additions to the TODO file :-)
-
+
 Major changes in Autoconf 2.1:
 
   Released November 4th, 1994, by David J. MacKenzie
@@ -2327,7 +2327,7 @@ Major changes in Autoconf 2.1:
 * autoreconf by default only rebuilds configure and config.h.in files
   that are older than any of their particular input files; there is a
   --force option to use after installing a new version of Autoconf.
-
+
 Thanks to everybody who's submitted changes and additions to Autoconf!
 I've incorporated many of them, and am still considering others for
 future releases -- but I didn't want to postpone this release indefinitely.
@@ -2343,7 +2343,7 @@ updated configure.in files.
 It's best to use GNU M4 1.3 (or later) with Autoconf version 2.
 Autoconf now makes heavy use of M4 diversions, which were implemented
 inefficiently in GNU M4 releases before 1.3.
-
+
 Major changes in Autoconf 2.0:
 
   Released October 26th, 1994, by David J. MacKenzie
@@ -2439,7 +2439,7 @@ Major changes in Autoconf 2.0:
 * New files autoconf.m4 and autoheader.m4 load the other Autoconf macros.
 * acsite.m4 is the new name for the system-wide aclocal.m4.
 * Has a DejaGnu test suite.
-
+
 Major changes in Autoconf 1.11:
 
 * AC_PROG_INSTALL calls install.sh with the -c option.
@@ -2448,7 +2448,7 @@ Major changes in Autoconf 1.11:
 * AC_OUTPUT prevents shells from looking in PATH for config.status.
 
 Plus a few other bug fixes.
-
+
 Major changes in Autoconf 1.10:
 
 * autoheader uses config.h.bot if present, analogous to config.h.top.
@@ -2457,7 +2457,7 @@ Major changes in Autoconf 1.10:
 * AC_PROG_CXX looks for cxx as a C++ compiler.
 
 Plus several bugs fixed.
-
+
 Major changes in Autoconf 1.9:
 
 * AC_YYTEXT_POINTER replaces AC_DECLARE_YYTEXT.
@@ -2467,7 +2467,7 @@ Major changes in Autoconf 1.9:
 * AC_FIND_X assumes no X if --without-x was given.
 * AC_FIND_XTRA adds libraries to the variable X_EXTRA_LIBS.
 * AC_PROG_INSTALL finds OSF/1 installbsd.
-
+
 Major changes in Autoconf 1.8:
 
 ** New macros:
@@ -2509,13 +2509,13 @@ Major changes in Autoconf 1.8:
 More big improvements are in process for future releases, but have not
 yet been (variously) finished, integrated, tested, or documented enough
 to release yet.
-
+
 Major changes in Autoconf 1.7:
 
 * New macro AC_OBSOLETE.
 * Bugs in Makefile.in fixed.
 * AC_LONG_FILE_NAMES improved.
-
+
 Major changes in Autoconf 1.6:
 
 * New macro AC_LONG_64_BITS.
@@ -2530,14 +2530,14 @@ Major changes in Autoconf 1.6:
 * config.status checks three optional environment variables to
   modify its behavior.
 * The usual bug fixes.
-
+
 Major changes in Autoconf 1.5:
 
 * New macros AC_FIND_X, AC_OFF_T, AC_STAT_MACROS_BROKEN, AC_REVISION.
 * autoconf and autoheader scripts have GNU standards conforming
   --version and --help options (they print their message and exit).
 * Many bug fixes.
-
+
 Major changes in Autoconf 1.4:
 
 * New macros AC_HAVE_POUNDBANG, AC_TIME_WITH_SYS_TIME, AC_LONG_DOUBLE,
@@ -2566,7 +2566,7 @@ Major changes in Autoconf 1.4:
 * If AC_ALLOCA chooses alloca.c, it also defines STACK_DIRECTION.
 * AC_CONST works much more reliably on more systems.
 * Many bug fixes.
-
+
 Major changes in Autoconf 1.3:
 
 configure no longer requires awk for packages that use a config.h.
@@ -2577,7 +2577,7 @@ Rename --exec_prefix to --exec-prefix for GNU standards conformance.
 Improve detection of STDC library.
 Add AC_HAVE_LIBRARY to check for non-default libraries.
 Function checking should work with future GNU libc releases.
-
+
 Major changes in Autoconf 1.2:
 
 The --srcdir option is now usually unnecessary.
@@ -2585,7 +2585,7 @@ Add a file containing sample comments describing CPP macros.
 A comment in config.status tells which host it was configured on.
 Substituted variable values can now contain commas.
 Fix bugs in various feature checks.
-
+
 Major changes in Autoconf 1.1:
 
 Added AC_STRCOLL macro.

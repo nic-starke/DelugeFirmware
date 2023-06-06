@@ -3,16 +3,18 @@
  *
  * This file is part of The Synthstrom Audible Deluge Firmware.
  *
- * The Synthstrom Audible Deluge Firmware is free software: you can redistribute it and/or modify it under the
- * terms of the GNU General Public License as published by the Free Software Foundation,
- * either version 3 of the License, or (at your option) any later version.
+ * The Synthstrom Audible Deluge Firmware is free software: you can redistribute
+ * it and/or modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
  *
- * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 #ifndef SAMPLEHOLDERFORCLIP_H_
@@ -22,19 +24,21 @@
 
 class SampleHolderForClip final : public SampleHolder {
 public:
-	SampleHolderForClip();
-	virtual ~SampleHolderForClip();
+  SampleHolderForClip();
+  virtual ~SampleHolderForClip();
 
-    void setAudioFile(AudioFile* newAudioFile, bool reversed = false, bool manuallySelected = false, int clusterLoadInstruction = CLUSTER_ENQUEUE);
-    void recalculateNeutralPhaseIncrement();
-    void beenClonedFrom(SampleHolderForClip* other, bool reversed);
+  void setAudioFile(AudioFile* newAudioFile,
+                    bool       reversed               = false,
+                    bool       manuallySelected       = false,
+                    int        clusterLoadInstruction = CLUSTER_ENQUEUE);
+  void recalculateNeutralPhaseIncrement();
+  void beenClonedFrom(SampleHolderForClip* other, bool reversed);
 
-    int16_t transpose;
-    int8_t cents;
+  int16_t transpose;
+  int8_t  cents;
 
 protected:
-    void sampleBeenSet(bool reversed, bool manuallySelected);
-
+  void sampleBeenSet(bool reversed, bool manuallySelected);
 };
 
 #endif /* SAMPLEHOLDERFORCLIP_H_ */

@@ -1,4 +1,5 @@
 # About
+
 The Synthstrom Audible Deluge Firmware runs on the Deluge portable sequencer, synthesizer and sampler, produced by Synthstrom Audible Limited.
 
 The Deluge Firmware’s codebase is written mostly in C++, with some low-level functions in C, and even the occasional line of assembly. The program is “bare-metal” - it runs without any higher level operating system.
@@ -8,6 +9,7 @@ The firmware runs on the Synthstrom Audible Deluge’s Renesas RZ/A1L processor,
 The firmware is built using a GNU ARM Embedded GCC toolchain.
 
 # Building the codebase
+
 ## Software installation
 
 Download and install e2 studio - this is an Eclipse-based IDE distributed by Renesas, who make the Deluge’s Renesas RZ/A1L processor. You will have to create an account to access the download. It appears to only be available for Windows and Linux.
@@ -30,11 +32,12 @@ Those are all the custom options you need to select, and you can just complete t
 ![image](https://github.com/SynthstromAudible/DelugeFirmware/assets/1840176/ff0ec17f-34ac-4701-8d55-b26811844aee)
 
 ## Building the firmware
-*(These instructions apply to the DelugeFirmwareCommunity repository, which features many helpful configuration additions.)*
+
+_(These instructions apply to the DelugeFirmwareCommunity repository, which features many helpful configuration additions.)_
 
 To build a firmware binary from the codebase, first open any source file from the Deluge project in e2 studio, to select the Deluge codebase as the active project.
 
-Then, click the dropdown arrow next to the “build” icon in the toolbar at the top. Make sure that the “e2-build-release-____” build configuration is selected based on whether you are building for the the OLED or 7-segment numeric display.
+Then, click the dropdown arrow next to the “build” icon in the toolbar at the top. Make sure that the “e2-build-release-\_\_\_\_” build configuration is selected based on whether you are building for the the OLED or 7-segment numeric display.
 ![image](https://github.com/SynthstromAudible/DelugeFirmware/assets/1840176/d3e71500-e327-46cb-9849-dcd3fcab1b4b)
 
 Sometimes, making that selection will already trigger the build process. If not, you can do so by clicking the actual build icon (the hammer) itself, or by pressing ctrl+B.
@@ -47,4 +50,5 @@ The end result is the creation of a .bin file in the e2-build-release-oled or e2
 You can now simply put this file on an SD card and install it on your Deluge as per normal.
 
 # Direct firmware uploading and debugging
+
 See: https://docs.google.com/document/d/1PkECgg0sxoVPng5CTdvRIZcY1CBBPHS8oVVhZIzTVn8/edit?usp=sharing

@@ -41,14 +41,14 @@ control.  Make will fail with an explicit missing command for help2man,
 and with a command not found error for a Gettext utility command.
 
 Running make in one particular subdirectory is possible, for example
-make -C info.  However there are interdependencies between the 
-subdirectories, notably on gnulib, so if you don't want to run "make", 
+make -C info.  However there are interdependencies between the
+subdirectories, notably on gnulib, so if you don't want to run "make",
 you may have to run "make -C gnulib/lib" first.
 
-Additionally, make dist may not work until make has been run at least 
+Additionally, make dist may not work until make has been run at least
 once, because of rules to create man pages under the man/ directory.
 
-"make dist" will fail if the use of Perl XS extension modules is 
+"make dist" will fail if the use of Perl XS extension modules is
 disabled and there is no Makefile in the XSParagraph subdirectory.
 
 
@@ -77,7 +77,7 @@ case $2 in
     ;;
   *)
    # Use latest ChangeLog entry as commit message
-   sed -n -e '1,/^\w*$/d' -e '/^[^	]/q' -e '{s/^	//;p}' ChangeLog  >"$outfile"
+   sed -n -e '1,/^\w*$/d' -e '/^[^  ]/q' -e '{s/^   //;p}' ChangeLog  >"$outfile"
 ;;
 esac
 ------------------------------------
@@ -124,14 +124,14 @@ gnulib-tool --add-import may also be used to add another gnulib module:
 After running gnulib-tool --add-import or otherwise adding modules, it is
 necessary to check what files were added or removed (e.g., run "git
 status -u") and add new files to the repository with "git add".
-Add any new generated files (typically gnulib/lib/foo.h from foo.h.in) 
+Add any new generated files (typically gnulib/lib/foo.h from foo.h.in)
 to the ignore list in .gitignore.
 
 
 Subdirectories in repository
 ----------------------------
 
-In addition to the subdirectories listed in README, there is the 
+In addition to the subdirectories listed in README, there is the
 following directory in the source control repository:
 
 js/ - Work on enhanced browsing of HTML manuals with JavaScript
@@ -143,14 +143,14 @@ Texinfo proper or maintained by the Texinfo developers.
 
 
 
-
+
 About running the Texinfo programs from a development source tree:
 
 - Once the distribution is built, you can run the compiled programs
-(info, install-info) out of the build tree without special settings; 
+(info, install-info) out of the build tree without special settings;
 they don't try to read any installed data files.
 
-- The texi2dvi script and texinfo.tex can be run as-is, since they 
+- The texi2dvi script and texinfo.tex can be run as-is, since they
 are standalone and don't require compilation.  For the same reasons,
 they are officially updated between full Texinfo releases, at
 http://ftpmirror.gnu.org/texinfo.
@@ -162,12 +162,12 @@ convenient to be able to make changes and then run it.
 To run the output "tp/texi2any" instead, you can set the environment
 variable TEXINFO_DEV_SOURCE to 1.  Otherwise, it will try to use
 Texinfo's Perl modules in the installed locations.  "tp/texi2any" uses
-the Perl interpreter found by configure, so you might want to run that 
-instead of texi2any.pl if it's different to the default interpreter in 
+the Perl interpreter found by configure, so you might want to run that
+instead of texi2any.pl if it's different to the default interpreter in
 your environment.
 
 
-
+
 References for working on various parts of the system:
 
 If you want to delve into making a new backend for the Perl makeinfo,
@@ -180,7 +180,7 @@ is available under the GFDL:
 Another book on plain TeX, also available under the GFDL, is a GNU package:
   TeX for the Impatient - http://www.gnu.org/software/teximpatient/
 Occasionally you may need to know about the details of the PDF format.
-A reference for this is the PDF reference, Sixth Edition, version 1.7,  
+A reference for this is the PDF reference, Sixth Edition, version 1.7,
 downloadable at http://www.adobe.com/devnet/pdf/pdf_reference_archive.html
 
 The texindex program is implemented using the TexiWebJR literate
@@ -190,7 +190,7 @@ in the texindex/ subdirectory creates the printable form of the
 program.  All the usual Texinfo output formats are possible.
 
 
-
+
 Steps for making a release (pretest or official):
 
 - When close to official release:
@@ -333,7 +333,7 @@ Build web documentation with
 Copy documentation files to web checkout with, e.g.
   make -C doc \
   wwwdoc-install www_target=../../TEXINFO_WEB_PAGES/texinfo/manual/
-Check for removed files with, e.g. ls -ltu $(www_target)/*/html_node, 
+Check for removed files with, e.g. ls -ltu $(www_target)/*/html_node,
 followed by cvs rm -f.  Likewise, check for added files with
 cvs -qn update, followed by cvs add.  When done, run cvs commit.
 
@@ -358,5 +358,3 @@ discuss on mailing list changing the git branch structure to allow quick
   bug fix releases for severe bugs (e.g. glibc 2.34 incompatibility, info crash
   in Brazillian Portuguese locale)
 delete these lines from README-hacking
-
-

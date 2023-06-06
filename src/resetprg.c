@@ -39,37 +39,37 @@
  *
  * This file is part of The Synthstrom Audible Deluge Firmware.
  *
- * The Synthstrom Audible Deluge Firmware is free software: you can redistribute it and/or modify it under the
- * terms of the GNU General Public License as published by the Free Software Foundation,
- * either version 3 of the License, or (at your option) any later version.
+ * The Synthstrom Audible Deluge Firmware is free software: you can redistribute
+ * it and/or modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
  *
- * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-
+#include "definitions.h"
 #include "r_typedefs.h"
 #include "sio_char.h"
-#include "definitions.h"
 
 #if defined(__thumb2__) || (defined(__thumb__) && defined(__ARM_ARCH_6M__))
-# define THUMB_V7_V6M
+#define THUMB_V7_V6M
 #endif
 
 /* Defined if this target supports the BLX Rm instruction.  */
-#if  !defined(__ARM_ARCH_2__) && !defined(__ARM_ARCH_3__) && \
-                !defined(__ARM_ARCH_3M__)    && !defined(__ARM_ARCH_4__) \
-                                                   && !defined(__ARM_ARCH_4T__)
-# define HAVE_CALL_INDIRECT
+#if !defined(__ARM_ARCH_2__) && !defined(__ARM_ARCH_3__) && !defined(__ARM_ARCH_3M__) && \
+    !defined(__ARM_ARCH_4__) && !defined(__ARM_ARCH_4T__)
+#define HAVE_CALL_INDIRECT
 #endif
 
 #ifdef HAVE_INITFINI_ARRAY
-#define _init    __libc_init_array
-#define _fini    __libc_fini_array
+#define _init __libc_init_array
+#define _fini __libc_fini_array
 #endif
 
 extern int R_CACHE_L1Init(void);
@@ -82,66 +82,63 @@ extern int R_CACHE_L1Init(void);
  *******************************************************************************/
 void resetprg(void) {
 
+  // Enable all modules' clocks
+  // --------------------------------------------------------------
+  STB_Init();
+  // SDRAM pin mux
+  // ------------------------------------------------------------------
+  setPinMux(3, 0, 1);  // A1
+  setPinMux(3, 1, 1);  // A1
+  setPinMux(3, 2, 1);  // A1
+  setPinMux(3, 3, 1);  // A1
+  setPinMux(3, 4, 1);  // A1
+  setPinMux(3, 5, 1);  // A1
+  setPinMux(3, 6, 1);  // A1
+  setPinMux(3, 7, 1);  // A1
+  setPinMux(3, 8, 1);  // A1
+  setPinMux(3, 9, 1);  // A1
+  setPinMux(3, 10, 1); // A1
+  setPinMux(3, 11, 1); // A1
+  setPinMux(3, 12, 1); // A1
+  setPinMux(3, 13, 1); // A1
+  setPinMux(3, 14, 1); // A1
 
-	// Enable all modules' clocks --------------------------------------------------------------
-	STB_Init();
-	// SDRAM pin mux ------------------------------------------------------------------
-	setPinMux(3, 0, 1); // A1
-	setPinMux(3, 1, 1); // A1
-	setPinMux(3, 2, 1); // A1
-	setPinMux(3, 3, 1); // A1
-	setPinMux(3, 4, 1); // A1
-	setPinMux(3, 5, 1); // A1
-	setPinMux(3, 6, 1); // A1
-	setPinMux(3, 7, 1); // A1
-	setPinMux(3, 8, 1); // A1
-	setPinMux(3, 9, 1); // A1
-	setPinMux(3, 10, 1); // A1
-	setPinMux(3, 11, 1); // A1
-	setPinMux(3, 12, 1); // A1
-	setPinMux(3, 13, 1); // A1
-	setPinMux(3, 14, 1); // A1
+  // D pins
+  setPinMux(5, 0, 1);
+  setPinMux(5, 1, 1);
+  setPinMux(5, 2, 1);
+  setPinMux(5, 3, 1);
+  setPinMux(5, 4, 1);
+  setPinMux(5, 5, 1);
+  setPinMux(5, 6, 1);
+  setPinMux(5, 7, 1);
+  setPinMux(5, 8, 1);
+  setPinMux(5, 9, 1);
+  setPinMux(5, 10, 1);
+  setPinMux(5, 11, 1);
+  setPinMux(5, 12, 1);
+  setPinMux(5, 13, 1);
+  setPinMux(5, 14, 1);
+  setPinMux(5, 15, 1);
 
-	// D pins
-	setPinMux(5, 0, 1);
-	setPinMux(5, 1, 1);
-	setPinMux(5, 2, 1);
-	setPinMux(5, 3, 1);
-	setPinMux(5, 4, 1);
-	setPinMux(5, 5, 1);
-	setPinMux(5, 6, 1);
-	setPinMux(5, 7, 1);
-	setPinMux(5, 8, 1);
-	setPinMux(5, 9, 1);
-	setPinMux(5, 10, 1);
-	setPinMux(5, 11, 1);
-	setPinMux(5, 12, 1);
-	setPinMux(5, 13, 1);
-	setPinMux(5, 14, 1);
-	setPinMux(5, 15, 1);
+  // setPinMux(7, 8, 1); // CS2
+  setPinMux(2, 0, 1); // CS3
+  setPinMux(2, 1, 1); // RAS
+  setPinMux(2, 2, 1); // CAS
+  setPinMux(2, 3, 1); // CKE
+  setPinMux(2, 4, 1); // WE0
+  setPinMux(2, 5, 1); // WE1
+  setPinMux(2, 6, 1); // RD/!WR
 
-	//setPinMux(7, 8, 1); // CS2
-	setPinMux(2, 0, 1); // CS3
-	setPinMux(2, 1, 1); // RAS
-	setPinMux(2, 2, 1); // CAS
-	setPinMux(2, 3, 1); // CKE
-	setPinMux(2, 4, 1); // WE0
-	setPinMux(2, 5, 1); // WE1
-	setPinMux(2, 6, 1); // RD/!WR
+  R_INTC_Init(); // Set up interrupt controller
 
-	R_INTC_Init(); // Set up interrupt controller
+  R_CACHE_L1Init(); // Makes everything go about 1000x faster
 
-	R_CACHE_L1Init(); // Makes everything go about 1000x faster
+  __enable_irq();
+  __enable_fiq();
 
+  main1();
 
-	__enable_irq();
-	__enable_fiq();
-
-	main1();
-
-	/* Stops program from running off */
-	while (1) {
-		__asm__("nop");
-	}
+  /* Stops program from running off */
+  while (1) { __asm__("nop"); }
 }
-

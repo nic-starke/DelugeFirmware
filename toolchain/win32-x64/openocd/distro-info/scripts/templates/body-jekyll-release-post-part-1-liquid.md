@@ -125,8 +125,8 @@ The xPack OpenOCD generally follows the official
 The current version is based on:
 
 - OpenOCD version {% raw %}{{ page.upstream_version }}{% endraw %}, the development commit
-[{% raw %}{{ page.upstream_commit }}{% endraw %}](https://github.com/xpack-dev-tools/openocd/commit/{% raw %}{{ page.upstream_commit }}{% endraw %}/)
-from {% raw %}{{ page.upstream_release_date }}{% endraw %}.
+  [{% raw %}{{ page.upstream_commit }}{% endraw %}](https://github.com/xpack-dev-tools/openocd/commit/{% raw %}{{ page.upstream_commit }}{% endraw %}/)
+  from {% raw %}{{ page.upstream_release_date }}{% endraw %}.
 
 ## Changes
 
